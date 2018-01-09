@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-if ($_SESSION['login'] != 1 /* | $_SESSION['usergroup'] != 1*/) {
+// TODO: FIX AUTH: if ($_SESSION['login'] != 1 && $_SESSION['usergroup'] != 1) {
+if ($_SESSION['login'] != 1) {
     header('Location: ../index.php?page=login');
     exit();
 }
