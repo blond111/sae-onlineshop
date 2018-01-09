@@ -9,9 +9,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,700">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button1.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+
+    <script defer src="assets/js/jquery.min.js"></script> <!-- Best practise in 2018: JS in header & defer/async, damit der Browser preloaden kann. -->
+    <script defer src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script defer src="assets/js/main.js"></script>
 </head>
 
-<body>
+<body class="body-<?php echo $page; ?>">
     <nav class="navbar navbar-default navbar-fixed-top navigation-clean-button">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -65,4 +69,3 @@
             </div>
         </div>
     </nav>
-    
