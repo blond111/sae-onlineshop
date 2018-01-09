@@ -410,7 +410,7 @@ a {
   right: 0;
   left: auto;
   overflow-x: scroll;
-  z-index: 1002;
+  z-index: 1031;
 }
 
 @media (max-width: 991px) {
@@ -439,6 +439,10 @@ a {
 
 .mycart-container {
   position: relative;
+}
+
+.mycart-container--hidden {
+  display: none;
 }
 
 .bag-pic {
@@ -564,6 +568,11 @@ a {
 #cart_info {
   display: none;
 }
+
+#cart_info.cart_info--open{
+  display: block;
+}
+
 
 
 /*********Login*****************************************************************/

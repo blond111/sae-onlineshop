@@ -9,10 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,700">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button1.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-
-    <script defer src="assets/js/jquery.min.js"></script> <!-- Best practise in 2018: JS in header & defer/async, damit der Browser preloaden kann. -->
-    <script defer src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script defer src="assets/js/main.js"></script>
+    <script defer src="assets/js/main.js"></script> <!-- Best practise in 2018: JS in header & defer/async, damit der Browser preloaden kann. -->
 </head>
 
 <body class="body-<?php echo $page; ?>">
@@ -42,7 +39,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">
+                        <a class="dropdown-toggle" href="#">
                             <i class="glyphicon glyphicon-user icon icon-log"></i>
                         </a>
 
@@ -58,7 +55,7 @@
                     </li>
 
                     <li class="shop-cart">
-                        <a href="index.php?page=login">
+                        <a href="#">
                             <div class="mycart-container pull-right js-open-cart">
                                 <img src="assets/img/shopping_bag1600.png" class="bag-pic">
                                 <span class="mycart-counter" style="width: 20px;">1</span>
