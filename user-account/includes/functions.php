@@ -3,7 +3,6 @@
 //ADRESSVERWALTUNG
 
 if (isset($_POST['update-address'])) {
-
     $fname = mysqli_real_escape_string($dblink, $_POST['firstname']);
     $lname = mysqli_real_escape_string($dblink, $_POST['lastname']);
     $email = mysqli_real_escape_string($dblink, $_POST['email']);
@@ -20,10 +19,6 @@ if (isset($_POST['update-address'])) {
 
     header('Location: index.php?page=address');
     exit();
-
-
 }
-
-
 
 ?>

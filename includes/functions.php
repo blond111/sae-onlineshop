@@ -56,3 +56,22 @@ if (isset($_POST['do-login'])) {
         $_SESSION['timeout'] = time();
     }
 }
+
+// TODO: add to cart
+if (isset($_POST['update-cart'])) {
+    // TODO: cartitems-->id
+    $cartId = mysqli_real_escape_string($dblink, $_POST['cartId']);
+    $prodId = mysqli_real_escape_string($dblink, $_POST['prodId']);
+    // TODO: cartitems-->qty
+    // TODO: cartitems-->prodPriceNow
+
+    /*$username = mysqli_real_escape_string($dblink, $_POST['user']);
+    $password = mysqli_real_escape_string($dblink, $_POST['password-one']);*/
+
+    $sql = "SET cartitems SET cart_id = '$cartId', prod_id = '$prodId' WHERE id = '1'";
+
+    mysqli_query($dblink, $sql);
+
+    header('Location: index.php?page=address');
+    exit();
+}

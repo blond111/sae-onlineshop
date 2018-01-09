@@ -37,8 +37,11 @@
                     <?php echo $row['prodPreis']; ?>
                 </p>
             </div>
-
-            <a class="btn btn-warning active btn-lg" role="button" href="#">BUY</a>
+            <form id="myform" action="" method="post">
+                <input type="hidden" name= "cartId" value="1">
+                <input type="hidden" name= "prodId" value="<?php echo $row['id']; ?>">
+                <input class="btn btn-warning active btn-lg" type="submit" name="update-cart" value="BUY">
+            </form>
         </div>
     <?php } ?>
 </div>
