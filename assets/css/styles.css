@@ -115,6 +115,10 @@ a {
   padding-bottom: 9%;
 }
 
+.content-list  h2{
+  font-size: 18px;
+}
+
 @media (max-width: 767px) {
   .content-list img {
     max-width: 41%;
@@ -139,6 +143,10 @@ a {
   line-height: 39px;
   font-family: 'Poppins', thin100;
   font-weight: 100;
+}
+
+.list > ul li {
+  list-style-type: disc;
 }
 
 .container-referenz {
@@ -299,6 +307,7 @@ a {
 
 .jumbotron.jumbotron-detail h1 {
   line-height: 50px;
+  font-size: 40px;
 }
 
 @media (max-width: 767px) {
@@ -314,8 +323,12 @@ a {
   color: white;
 }
 
+.heading h2{
+  font-size: 50px;
+}
+
 @media (max-width: 767px) {
-  .heading h1 {
+  .heading h2 {
     font-size: 25px;
   }
 }
@@ -374,8 +387,12 @@ a {
   letter-spacing: 9px;
 }
 
-.row-use {
-  margin-bottom: 6%;
+/* TODO:Styling */
+
+/* .container-use {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .anwendung {
@@ -385,6 +402,25 @@ a {
   color: white;
   font-size: 19px;
   justify-content: space-between;
+  width: 300px;
+}
+
+.anwendung ol{
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}*/
+
+.count-use{
+  border-radius: 40px;
+  top: 21px;
+  right: -3px;
+  background-color: rgb(69, 86, 102);
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  width: 20px;
+  height: 20px
 }
 
 
@@ -424,7 +460,7 @@ a {
   background-color: #fff;
   border-bottom: 1px solid #ececec;
   overflow: hidden;
-  padding: 20px;
+  padding: 22px;
   text-align: center;
 }
 
