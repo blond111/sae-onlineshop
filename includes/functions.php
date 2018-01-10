@@ -36,8 +36,6 @@ if (isset($_POST['do-login'])) {
             }
 
 
-
-
         } else {
             // Fehler - Passwort falsch
             $error = true;
@@ -56,6 +54,23 @@ if (isset($_POST['do-login'])) {
         $_SESSION['timeout'] = time();
     }
 }
+
+// Get cartId (Gibt es in der Session schon eine Cart-ID, wenn nicht setzt eine Neue.)
+if (isset($_SESSION['cart_id'])) {
+    $cartId = $_SESSION['cart_id'];
+
+} else {
+    $userid = (isset($_SESSION['uid'])) ? $_SESSION['uid'] : NULL; // Ist der User angemeldet, speicher gleich auch User-ID.
+    $sql = "INSERT INTO cart (id, user_id) VALUES( NULL, '$userid' ) ";
+    $res = mysqli_query($dblink, $sql);
+
+    $cartid = mysqli_insert_id($dblink);
+    $_SESSION['cart_id'] = $cartid;
+}
+
+
+
+
 
 // TODO: add to cart
 if (isset($_POST['update-cart'])) {
