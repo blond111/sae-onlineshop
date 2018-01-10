@@ -639,6 +639,7 @@ a {
 .loginwait {
   display: flex; 
   justify-content: center;
+  padding: 14%;
 }
 
 .loginwait-p {

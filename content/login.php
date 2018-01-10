@@ -1,4 +1,12 @@
-<section class="login-section">
+<section class="login-section loginwait">
+<?php
+    if ($_SESSION['login_counter'] >= 3) {
+
+        $time_to_login = $_SESSION['timeout'] + 60;
+        $seconds_to_login = $time_to_login - time();
+
+        echo "<div><p class='loginwait-p'>Bitte warte noch $seconds_to_login Sekunden bis du dich einloggen darfst!</p></div>";
+    } else { ?>
     <div class="container">
         <div>
             <h1 class="login-header">
@@ -32,4 +40,5 @@
             </div>
         </div>
     </div>
+<?php }?>
 </section>

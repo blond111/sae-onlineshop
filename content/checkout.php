@@ -1,3 +1,12 @@
+<?php
+
+if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] == -1) {
+    header('Location: index.php?page=login&frompage=checkout');
+    exit();
+}
+
+?>
+
 <div class="checkout-page wrapper">
     <section class="section order-summary">
         <div class="container">

@@ -61,7 +61,7 @@ if (isset($_POST['do-login'])) {
             }
 
             if (isset($_GET['frompage'])) {
-                header('Location: ' . ((isset($_GET['from'])) ? $_GET['from'] : '') . '/index.php?page=' . $_GET['frompage']);
+                header('Location: ' . ((isset($_GET['from'])) ? ($_GET['from'] . '/') : '') . 'index.php?page=' . $_GET['frompage']);
                 exit();
             }
 

@@ -37,7 +37,7 @@ if ($page == "home") {
 
 } elseif ($page == "logout") {
     session_destroy();
-    header('Location: ../index.php');
+    header('Location: index.php');
     exit();
 
 } else {

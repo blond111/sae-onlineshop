@@ -40,9 +40,38 @@
 
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#">
-                            <i class="glyphicon glyphicon-user icon icon-log"></i>
+                            <i class="glyphicon glyphicon-user icon <?php if ($myusergroup != -1) echo 'icon-log' ?>"></i>
                         </a>
 
+                        <?php if ($myusergroup >= 0) { ?>
+                        <ul class="dropdown-menu" role="menu">
+
+                            <li role="presentation">
+                                <a href="user-account/index.php?page=account">Account</a>
+                            </li>
+
+                            <li role="presentation">
+                                <a href="user-account/index.php?page=address">Adresse</a>
+                            </li>
+
+                            <li role="presentation">
+                                <a href="user-account/index.php?page=orders">Bestellungen</a>
+                            </li>
+
+                            <?php if ($myusergroup == 1) { ?>
+                            <li role="presentation">
+                                <a href="backend/index.php?page=dashboard">Admin-Dashboard</a>
+                            </li>
+                            <?php }?>
+
+                            <li role="presentation">
+                                <a href="index.php?page=logout">Logout</a>
+                            </li>
+                            
+                        </ul>
+                        <?php }
+                        
+                        else { ?>
                         <ul class="dropdown-menu" role="menu">
                             <li role="presentation">
                                 <a href="index.php?page=login">Einloggen</a>
@@ -52,6 +81,7 @@
                                 <a href="index.php?page=registrierung">Registrieren</a>
                             </li>
                         </ul>
+                        <?php } ?>
                     </li>
 
                     <li class="shop-cart">

@@ -15,13 +15,13 @@
 <div id="wrapper">
     <div class="top">
         <nav class="nav-main">
-            <img class="top-lg" src="../assets/img/logo.png" style="max-width:80%;">
+            <a href="../index.php?page=home"><img class="top-lg" src="../assets/img/logo.png" style="max-width:80%;"></a>
             <ul>
                 <li><a href="index.php?page=dashboard">Dashboard</a></li>
                 <li><a href="index.php?page=users">Userverwaltung</a></li>
                 <li><a href="index.php?page=product">Produktverwaltung</a></li>
                 <li><a href="index.php?page=orders">Bestellungen</a></li>
-                <li><a href="index.php?page=logout">Logout</a></li>
+                <li><a href="../index.php?page=logout">Logout</a></li>
             </ul>
         </nav>
     </div>

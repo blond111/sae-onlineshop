@@ -16,7 +16,7 @@
         <nav class="navbar navbar-default navigation-clean-search">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand header-logo" href="index.php?page=account">
+                    <a class="navbar-brand header-logo" href="../index.php?page=home">
                         <img src="../assets/img/logo.png">
                     </a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
@@ -29,8 +29,8 @@
                 <div
                         class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
-                        <li class="active" role="presentation">
-                            <a href="#">Account </a>
+                        <li role="presentation">
+                            <a href="index.php?page=account">Account </a>
                         </li>
                         <li role="presentation">
                             <a href="index.php?page=address">Adresse </a>
@@ -38,8 +38,11 @@
                         <li role="presentation">
                             <a href="index.php?page=orders">Bestellungen </a>
                         </li>
+                        <li role="presentation">
+                            <a href="../index.php?page=products">Zurück zum Shop</a>
+                        </li>
                     </ul>
-                    <a class="btn btn-default navbar-btn navbar-right action-button" role="button" href="index.php?page=logout">LOGOUT </a>
+                    <a class="btn btn-default navbar-btn navbar-right action-button" role="button" href="../index.php?page=logout">LOGOUT </a>
                 </div>
             </div>
         </nav>
