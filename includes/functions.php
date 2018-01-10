@@ -60,13 +60,17 @@ if (isset($_POST['do-login'])) {
                 $res = mysqli_query($dblink, $sql);
             }
 
+            if (isset($_GET['frompage'])) {
+                header('Location: ' . ((isset($_GET['from'])) ? $_GET['from'] : '') . '/index.php?page=' . $_GET['frompage']);
+                exit();
+            }
 
-            if ($user['usergroup'] == 1) {
-
+            elseif ($user['usergroup'] == 1) {
                 header('Location: backend/index.php?page=dashboard');
                 exit();
-            } else {
-
+            } 
+            
+            else {
                 header('Location: user-account/index.php?page=account');
                 exit();
             }
