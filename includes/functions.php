@@ -2,12 +2,38 @@
 $error = false;
 $error_msg = array();
 
-// Nur eine Pseude-security: Nicht production ready, da Sessions jederzeit neu gestartet werden können (z.B.Brute Force-Attacke)
+if (! isset($_SESSION['login'])) {
+    $_SESSION['login'] = 0;
+}
+
+if (! isset($_SESSION['login_counter'])) {
+    $_SESSION['login_counter'] = 0;
+}
+
+if (! isset($_SESSION['timeout'])) {
+    $_SESSION['timeout'] = false;
+}
+
+// Login Counter: Nur eine Pseude-security: Nicht production ready, da Sessions jederzeit neu gestartet werden können (z.B.Brute Force-Attacke)
 if ($_SESSION['login_counter'] >= 3) {
     if (($_SESSION['timeout'] + 60) < time()) {
         $_SESSION['login_counter'] = 0;
     }
 }
+
+
+// Zu welcher Usergroup gehöre ich? 1: Admin, 0: User, -1 = Besucher
+if (isset($_SESSION['usergroup'])) {
+    $myusergroup = $_SESSION['usergroup'];
+} else {
+    $myusergroup = -1;
+}
+
+
+
+
+
+
 
 
 if (isset($_POST['do-login'])) {
@@ -24,6 +50,7 @@ if (isset($_POST['do-login'])) {
             $_SESSION['login'] = 1;
             $_SESSION['uname'] = $user['username'];
             $_SESSION['uid'] = $user['id'];
+            $_SESSION['usergroup'] = $user['usergroup'];
 
             // Ergänzen von Username im Cart wenn man sich im nachhinein anmedlet!
             if (isset($_SESSION['cart_id'])) {

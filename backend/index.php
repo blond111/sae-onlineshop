@@ -1,17 +1,16 @@
 <?php
 session_start();
 
-// TODO: FIX AUTH: if ($_SESSION['login'] != 1 && $_SESSION['usergroup'] != 1) {
-if ($_SESSION['login'] != 1) {
-    header('Location: ../index.php?page=login');
-    exit();
-}
-
 
 include '../includes/dbconnect.php';
 include 'includes/function.php';
 
 $page = (isset($_GET['page'])) ? $_GET['page'] : "dashboard";
+
+if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] != 1) {
+    header('Location: ../index.php?page=login&from=backend&frompage=' . $page);
+    exit();
+}
 
 $content = "content/";
 

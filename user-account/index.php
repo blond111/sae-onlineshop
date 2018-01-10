@@ -1,15 +1,16 @@
 <?php
 session_start();
 
-if ($_SESSION['login'] != 1) {
-    header('Location: ../index.php?page=login');
-    exit();
-}
 
 include '../includes/dbconnect.php';
-include 'includes/functions.php';
+include 'includes/function.php';
 
-$page = (isset($_GET['page'])) ? $_GET['page'] : "dashboard";
+$page = (isset($_GET['page'])) ? $_GET['page'] : "account";
+
+if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] == -1) {
+    header('Location: ../index.php?page=login&from=user-account&frompage=' . $page);
+    exit();
+}
 
 $content = "content/";
 
