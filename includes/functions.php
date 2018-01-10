@@ -9,7 +9,7 @@ if ($_SESSION['login_counter'] >= 3) {
     }
 }
 
-// TODO: Remove pseudo-salt
+
 if (isset($_POST['do-login'])) {
     $sql = "SELECT id, username, password, usergroup FROM users WHERE username = '{$_POST['username']}'";
     $res = mysqli_query($dblink, $sql);
@@ -24,6 +24,15 @@ if (isset($_POST['do-login'])) {
             $_SESSION['login'] = 1;
             $_SESSION['uname'] = $user['username'];
             $_SESSION['uid'] = $user['id'];
+
+            // Ergänzen von Username im Cart wenn man sich im nachhinein anmedlet!
+            if (isset($_SESSION['cart_id'])) {
+                $thisUser = $user['id'];
+                $thisCartId = $_SESSION['cart_id'];
+                $sql = "UPDATE cart SET user_id = '$thisUser' WHERE id = '$thisCartId'";
+                $res = mysqli_query($dblink, $sql);
+            }
+
 
             if ($user['usergroup'] == 1) {
 
@@ -55,38 +64,52 @@ if (isset($_POST['do-login'])) {
     }
 }
 
-// Get cartId (Gibt es in der Session schon eine Cart-ID, wenn nicht setzt eine Neue.)
-if (isset($_SESSION['cart_id'])) {
-    $cartId = $_SESSION['cart_id'];
 
-} else {
-    $userid = (isset($_SESSION['uid'])) ? $_SESSION['uid'] : NULL; // Ist der User angemeldet, speicher gleich auch User-ID.
-    $sql = "INSERT INTO cart (id, user_id) VALUES( NULL, '$userid' ) ";
+
+
+if (isset($_POST['update-cart'])) {
+
+
+    $cartId = $_SESSION['cart_id'];
+    $prodId = mysqli_real_escape_string($dblink, $_POST['prodId']);
+
+    // Suche Produktpreis
+    $sql = "SELECT prodPreis FROM products WHERE id = '$prodId'";
+    $res = mysqli_query($dblink, $sql);
+    while($row = mysqli_fetch_assoc($res)){
+        $prodPriceNow = $row['prodPreis'];
+    }
+
+    // Ist dieses Produkt schon in meinem Warenkorb?
+    $sql = "SELECT id, qty FROM cartitems WHERE cart_id = '$cartId' AND prod_id = '$prodId'";
     $res = mysqli_query($dblink, $sql);
 
-    $cartid = mysqli_insert_id($dblink);
-    $_SESSION['cart_id'] = $cartid;
-}
+    var_dump($res);
 
+    while($row = mysqli_fetch_assoc($res)){
+        // Wenn es das Produkt schon im Warenkorb gibt
+        if (isset($row['id'])) {
+            echo('produkt im warenkorb!');
+            $cartitems_id = $row['id'];
+            $qty = $row['qty'] + 1;
+            $sql = "UPDATE cartitems SET qty = '$qty', prodPriceNow = '$prodPriceNow' WHERE id = '$cartitems_id'";
+            mysqli_query($dblink, $sql);
+        }
+        echo('alles okay, update gemacht!');
+        exit();
+    }
+            
+    // $qty = '1';
+    // $sql = "INSERT INTO cartitems (cart_id, prod_id, qty, prodPriceNow) VALUES ('$cartId', '$prodId', '$qty', '$prodPriceNow')";
+    // echo('KEIN produkt im warenkorb :/');
 
+    // mysqli_query($dblink, $sql);
 
+    // exit();
 
+    // $qty = mysqli_real_escape_string($dblink, $_POST['qty']);
+    // $prodPriceNow = '99';
 
-// TODO: add to cart
-if (isset($_POST['update-cart'])) {
-    // TODO: cartitems-->id
-    $cartId = mysqli_real_escape_string($dblink, $_POST['cartId']);
-    $prodId = mysqli_real_escape_string($dblink, $_POST['prodId']);
-    // TODO: cartitems-->qty
-    // TODO: cartitems-->prodPriceNow
-
-    /*$username = mysqli_real_escape_string($dblink, $_POST['user']);
-    $password = mysqli_real_escape_string($dblink, $_POST['password-one']);*/
-
-    $sql = "SET cartitems SET cart_id = '$cartId', prod_id = '$prodId' WHERE id = '1'";
-
-    mysqli_query($dblink, $sql);
-
-    header('Location: index.php?page=address');
-    exit();
+    // $sql = "INSERT INTO cartitems (cart_id, prod_id, qty, prodPriceNow) VALUES ('$cartId', '$prodId', '$qty', '$prodPriceNow')";
+    // mysqli_query($dblink, $sql);
 }

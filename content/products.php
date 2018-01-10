@@ -1,3 +1,20 @@
+<?php
+
+// Get cartId (Gibt es in der Session schon eine Cart-ID, wenn nicht setzt eine Neue.)
+if (isset($_SESSION['cart_id'])) {
+    $cartId = $_SESSION['cart_id'];
+
+} else {
+    $userid = (isset($_SESSION['uid'])) ? $_SESSION['uid'] : NULL; // Ist der User angemeldet, speicher gleich auch User-ID.
+    $sql = "INSERT INTO cart (id, user_id) VALUES( NULL, '$userid' ) ";
+    $res = mysqli_query($dblink, $sql);
+
+    $cartid = mysqli_insert_id($dblink);
+    $_SESSION['cart_id'] = $cartid;
+}
+
+?>
+
 <div class="hero-pic hero-products">
     <div class="jumbotron">
         <h1>Regenerierent
@@ -38,8 +55,8 @@
                 </p>
             </div>
             <form id="myform" action="" method="post">
-                <input type="hidden" name= "cartId" value="1">
                 <input type="hidden" name= "prodId" value="<?php echo $row['id']; ?>">
+                <input type="hidden" name= "qty" value="33">
                 <input class="btn btn-warning active btn-lg" type="submit" name="update-cart" value="BUY">
             </form>
         </div>
