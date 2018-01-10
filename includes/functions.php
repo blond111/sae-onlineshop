@@ -68,8 +68,6 @@ if (isset($_POST['do-login'])) {
 
 
 if (isset($_POST['update-cart'])) {
-
-
     $cartId = $_SESSION['cart_id'];
     $prodId = mysqli_real_escape_string($dblink, $_POST['prodId']);
 
@@ -84,32 +82,93 @@ if (isset($_POST['update-cart'])) {
     $sql = "SELECT id, qty FROM cartitems WHERE cart_id = '$cartId' AND prod_id = '$prodId'";
     $res = mysqli_query($dblink, $sql);
 
-    var_dump($res);
-
     while($row = mysqli_fetch_assoc($res)){
-        // Wenn es das Produkt schon im Warenkorb gibt
-        if (isset($row['id'])) {
-            echo('produkt im warenkorb!');
             $cartitems_id = $row['id'];
-            $qty = $row['qty'] + 1;
+
+            // Hinzufügen oder abziehen?
+            if (isset($_POST['minus'])) {
+
+                // Wenn abziehen: Letztes Produkt?
+                if ($row['qty'] <= 1) {
+                    $sql = "DELETE FROM cartitems WHERE id = '$cartitems_id'";
+                    mysqli_query($dblink, $sql);
+
+                    header('Location: index.php?page=products&cart=open');
+                    exit();
+                }
+
+                $qty = $row['qty'] - 1;
+            } else {
+                $qty = $row['qty'] + 1;
+            }
+
             $sql = "UPDATE cartitems SET qty = '$qty', prodPriceNow = '$prodPriceNow' WHERE id = '$cartitems_id'";
             mysqli_query($dblink, $sql);
-        }
-        echo('alles okay, update gemacht!');
-        exit();
+
+            header('Location: index.php?page=products&cart=open');
+            exit();
     }
-            
-    // $qty = '1';
-    // $sql = "INSERT INTO cartitems (cart_id, prod_id, qty, prodPriceNow) VALUES ('$cartId', '$prodId', '$qty', '$prodPriceNow')";
-    // echo('KEIN produkt im warenkorb :/');
 
-    // mysqli_query($dblink, $sql);
+    // Wenn es noch nicht im Warenkorb ist...
+    $qty = '1';
+    $sql = "INSERT INTO cartitems (cart_id, prod_id, qty, prodPriceNow) VALUES ('$cartId', '$prodId', '$qty', '$prodPriceNow')";
+    mysqli_query($dblink, $sql);
 
-    // exit();
-
-    // $qty = mysqli_real_escape_string($dblink, $_POST['qty']);
-    // $prodPriceNow = '99';
-
-    // $sql = "INSERT INTO cartitems (cart_id, prod_id, qty, prodPriceNow) VALUES ('$cartId', '$prodId', '$qty', '$prodPriceNow')";
-    // mysqli_query($dblink, $sql);
+    header('Location: index.php?page=products&cart=open');
+    exit();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /////babsi shit 
+
+
+// if (isset($_POST['minus-cartitem'])) {
+
+//     $cartId = $_SESSION['cart_id'];
+//     $prodId = mysqli_real_escape_string($dblink, $_POST['prodId']);
+
+//     // Ist dieses Produkt schon in meinem Warenkorb?
+//     $sql = "SELECT id, qty FROM cartitems WHERE cart_id = '$cartId' AND prod_id = '$prodId'";
+//     $res = mysqli_query($dblink, $sql);
+
+//     while($row = mysqli_fetch_assoc($res)){
+//             echo('produkt im warenkorb!');
+//             $cartitems_id = $row['id'];
+//             $qty = $row['qty'] - 1;
+//             $sql = "UPDATE cartitems SET qty = '$qty', prodPriceNow = '$prodPriceNow' WHERE id = '$cartitems_id'";
+//             mysqli_query($dblink, $sql);
+
+//             echo('Produkt wurde abgezogen!');
+//             exit();
+
+//             var_dump($qty);
+//     }
+
+//     // Wenn nur mehr eins vorhanden lösche es
+
+//     $qty = '1';
+//     $sql = "DELETE FROM cartitems WHERE id = '$cartitems_id'";
+//     echo('KEIN produkt im warenkorb :/');
+//     mysqli_query($dblink, $sql);
+
+//     echo('alles okay, produkt wurde gelöscht');
+//     exit();
+// }

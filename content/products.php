@@ -54,9 +54,8 @@ if (isset($_SESSION['cart_id'])) {
                     <?php echo $row['prodPreis']; ?>
                 </p>
             </div>
-            <form id="myform" action="" method="post">
+            <form action="" method="post">
                 <input type="hidden" name= "prodId" value="<?php echo $row['id']; ?>">
-                <input type="hidden" name= "qty" value="33">
                 <input class="btn btn-warning active btn-lg" type="submit" name="update-cart" value="BUY">
             </form>
         </div>

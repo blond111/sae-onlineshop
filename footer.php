@@ -50,7 +50,8 @@
     </section>
 </footer>
 
-<div id="cart_info">
+
+<div id="cart_info" <?php if($_GET['cart'] === 'open') echo 'class="cart_info--open"' ?>>
     <div class="cart-window-all"></div>
     <div class="cart-window">
         <div class="cart-window-header">
@@ -67,6 +68,13 @@
         </div>
 
         <div class="cart-window-body">
+            <?php
+
+            $sql = "SELECT * FROM products";
+            $res = mysqli_query($dblink, $sql);
+
+            while ($row = mysqli_fetch_assoc($res)) {
+            ?>
             <div class="cart-item">
                 <div class="cart-thumbnail">
                     <div class="thumbnail">
@@ -77,16 +85,23 @@
                 <div class="cart-details">
                     <span class="cart-produ-title">SHINE &amp; FINE 250g</span>
                     <div class="cart-produ-qty">
-                        <button class="btn btn-default qty-btn js-qty-plus" type="button">+</button>
-                        <input min="0" max="99" class="input-sm qty-text" size="5" value="0" type="number">
-                        <button class="btn btn-default qty-btn js-qty-minus" type="button">-</button>
+                        <form action="" method="post">
+                            <!-- <button class="btn btn-default qty-btn js-qty-plus" type="button">+</button>
+                            <input min="0" max="99" class="input-sm qty-text" size="5" value="0" type="number"> -->
+                            <!-- //HIER BIN ICH  -->
+                            <input type="hidden" name= "prodId" value="<?php echo $row['id']; ?>">
+                            <input type="hidden" name= "minus">
+                            <input class="btn btn-warning active btn-lg" type="submit" name="update-cart" value="MINUS">
+                            <!-- <button class="btn btn-default qty-btn js-qty-minus" type="button">-</button> -->
+                        </form>
                     </div>
 
                     <span class="cart-produ-price">55 €</span>
                 </div>
             </div>
+            <?php } ?>
 
-            <div class="cart-item">
+            <!-- <div class="cart-item">
                 <div class="cart-thumbnail">
                     <div class="thumbnail">
                         <img "Flasche plus Pinsel" src="assets/img/Flaschpluspinsel.jpg">
@@ -103,7 +118,7 @@
 
                     <span class="cart-produ-price">85 €</span>
                 </div>
-            </div>
+            </div> -->
 
             <div class="cart-total">
                 <div class="grand-total">
