@@ -51,7 +51,7 @@
 </footer>
 
 
-<div id="cart_info" <?php if($_GET['cart'] === 'open') echo 'class="cart_info--open"' ?>>
+<div id="cart_info" <?php if($_GET['cart'] === 'open') echo 'class="cart_info--open"'?> >
     <div class="cart-window-all"></div>
     <div class="cart-window">
         <div class="cart-window-header">
@@ -96,7 +96,7 @@
                         </form>
                     </div>
 
-                    <span class="cart-produ-price">55 €</span>
+                    <p class="cart-produ-price">55<span>€</span></p>
                 </div>
             </div>
             <?php } ?>

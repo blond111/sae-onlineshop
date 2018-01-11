@@ -44,7 +44,7 @@
 
     <div class="row row-detail row-text product-row">
         <div class="col-md-6 item-detail">
-            <img imt="Noch mehr Zutaten!" src="assets/img/Zutaten3.jpg">
+            <img alt="Noch mehr Zutaten!" src="assets/img/Zutaten3.jpg">
         </div>
         <div class="col-md-6 item-detail">
             <div>

@@ -27,6 +27,7 @@
             <li>nicht an Tieren getestet</li>
         </ul>
         <a class="btn btn-warning active btn-lg" role="button" href="index.php?page=products">SHOP NOW</a>
+    </div>    
 </section>
 
 <section class="container-referenz">

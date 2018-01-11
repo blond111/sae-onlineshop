@@ -1,6 +1,6 @@
 <section class="main">
     <div class="container">
-        <h1 calss="header-main"><?php echo $title; ?></h1>
+        <h1 class="header-main"><?php echo $title; ?></h1>
         <?php
         if (isset($_GET['action']) && $_GET['action'] == "edit") {
             include "content/products/edit.php";

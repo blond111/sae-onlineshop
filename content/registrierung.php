@@ -106,6 +106,32 @@ if (isset($_POST['send-contact'])) {
         mysqli_query($dblink, $sql);
     }
 
+    // TODO :EINGELOGGT sein wenn man sich regestreiert 
+
+    if (isset($_POST['send-contact'])) {
+        $sql = "SELECT username, password FROM users WHERE username = '{$_POST['username']}'";
+        $res = mysqli_query($dblink, $sql);
+    
+        if (mysqli_num_rows($res) == 1 ) {
+            $user = mysqli_fetch_assoc($res);
+    
+            $pw_hash = explode(":", $user['password']);
+    
+            if ($pw_hash[0] == sha1($_POST['password'] . $pw_hash[1])) {
+    
+                $_SESSION['login'] = 1;
+                $_SESSION['uname'] = $user['username'];
+                $_SESSION['uid'] = $user['id'];
+                $_SESSION['usergroup'] = $user['usergroup'];
+    
+                
+                header('Location: user-account/index.php?page=account');
+                exit();
+            }
+        }
+                
+    }
+
 
     if ($error === false) {
         $show_form = false;
