@@ -127,6 +127,7 @@ if (isset($_POST['update-cart'])) {
                 $qty = $row['qty'] - 1;
             } else {
                 $qty = $row['qty'] + 1;
+
             }
 
             $sql = "UPDATE cartitems SET qty = '$qty', prodPriceNow = '$prodPriceNow' WHERE id = '$cartitems_id'";
@@ -139,7 +140,7 @@ if (isset($_POST['update-cart'])) {
     // Wenn es noch nicht im Warenkorb ist...
     $qty = '1';
     $sql = "INSERT INTO cartitems (cart_id, prod_id, qty, prodPriceNow) VALUES ('$cartId', '$prodId', '$qty', '$prodPriceNow')";
-    mysqli_query($dblink, $sql);
+    mysqli_query($dblink, $sql);    
 
     header('Location: index.php?page=products&cart=open');
     exit();
