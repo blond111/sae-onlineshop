@@ -62,10 +62,12 @@ if (isset($_POST['insert-users'])) {
     $plz = mysqli_real_escape_string($dblink, $_POST['plz']);
     $ort = mysqli_real_escape_string($dblink, $_POST['ort']);
     $username = mysqli_real_escape_string($dblink, $_POST['user']);
+    
     $password = mysqli_real_escape_string($dblink, $_POST['password-one']);
+    $pw_hash = sha1($password.'1234').':1234';
 
     $sql = "INSERT INTO users (fname, lname, email, street, door, plz, ort, username, password) 
-                VALUES ('$fname', '$lname', '$email', '$street', '$door', '$plz', '$ort', '$username', '$password')";
+                VALUES ('$fname', '$lname', '$email', '$street', '$door', '$plz', '$ort', '$username', '$pw_hash')";
 
     mysqli_query($dblink, $sql);
 
@@ -85,9 +87,11 @@ if (isset($_POST['update-users'])) {
     $plz = mysqli_real_escape_string($dblink, $_POST['plz']);
     $ort = mysqli_real_escape_string($dblink, $_POST['ort']);
     $username = mysqli_real_escape_string($dblink, $_POST['user']);
-    $password = mysqli_real_escape_string($dblink, $_POST['password-one']);
 
-    $sql = "UPDATE users SET fname = '$fname', lname = '$lname', email = '$email', street = '$street', door = '$door', plz = '$plz', ort = '$ort', username = '$username', password = '$password' WHERE id = '{$_GET['id']}'";
+    $password = mysqli_real_escape_string($dblink, $_POST['password-one']);
+    $pw_hash = sha1($password.'1234').':1234';
+
+    $sql = "UPDATE users SET fname = '$fname', lname = '$lname', email = '$email', street = '$street', door = '$door', plz = '$plz', ort = '$ort', username = '$username', password = '$pw_hash' WHERE id = '{$_GET['id']}'";
 
     mysqli_query($dblink, $sql);
 

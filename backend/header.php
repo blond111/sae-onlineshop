@@ -15,7 +15,7 @@
 <div id="wrapper">
     <div class="top">
         <nav class="nav-main">
-            <a href="../index.php?page=home"><img class="top-lg" src="../assets/img/logo.png" style="max-width:80%;"></a>
+            <a href="../index.php?page=home"><img class="top-lg" alt="logo" src="../assets/img/logo.png"></a>
             <ul>
                 <li><a href="index.php?page=dashboard">Dashboard</a></li>
                 <li><a href="index.php?page=users">Userverwaltung</a></li>
