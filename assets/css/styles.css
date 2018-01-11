@@ -402,39 +402,67 @@ a {
 
 /* TODO:Styling */
 
-/* .container-use {
+.container-use-all {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
 }
 
 .anwendung {
-  max-width: 33%;
   display: flex;
-  align-items: start;
   color: white;
   font-size: 19px;
-  justify-content: space-between;
-  width: 300px;
 }
 
 .anwendung ol{
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center; 
-}*/
+  align-items: center;
+  padding: 1%; 
+}
+
+.anwendung ol > :last-child{
+  margin: 9%;
+}
 
 .count-use{
   border-radius: 40px;
   top: 21px;
   right: -3px;
-  background-color: rgb(69, 86, 102);
+  background-color: rgb(255, 255, 255);
   text-align: center;
-  color: #fff;
-  font-size: 12px;
-  width: 20px;
-  height: 20px
+  color: #a9bed0;
+  font-size: 28px;
+  width: 40px;
+  height: 40px;
 }
+
+@media (max-width: 991px) {
+  .anwendung {
+    font-size: 18px;
+  } 
+}
+
+@media (max-width: 767px) {
+  .count-use{
+    border-radius: 40px;
+    top: 21px;
+    right: -3px;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    color: #a9bed0;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+  }
+  .anwendung {
+    font-size: 9px;
+  } 
+
+  .anwendung ol > :last-child{
+    margin: 4%;
+  }
+
+}
+
 
 
 /*********Wahrenkorb*****************************************************************/

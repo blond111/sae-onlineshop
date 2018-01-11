@@ -15,7 +15,6 @@ function toggle () {
 if (dropdown !== undefined) dropdown.addEventListener('click', toggle) // Wenn es überhaupt ein Dropdown auf der Seite gibt...
 
 
-
 var burger = document.getElementsByClassName('navbar-toggle')[0]
 var burgerMenu = document.getElementsByClassName('navbar-collapse')[0]
 
@@ -27,7 +26,8 @@ if (burger !== undefined) burger.addEventListener('click', burgerToggle)
 
 
 var cartButton = document.getElementsByClassName('mycart-container')[0]
-var cartClose = document.getElementsByClassName('close-cart')[0]
+var cartClose = document.getElementsByClassName('close-cart', 'cart-window-all')[0]
+var cartCloseWindow = document.getElementsByClassName('cart-window-all')[0]
 var cartInfo = document.getElementById('cart_info')
 
 function toggleCart (e) {
@@ -38,4 +38,5 @@ function toggleCart (e) {
 
 if (cartButton !== undefined) cartButton.addEventListener('click', toggleCart)
 if (cartClose !== undefined) cartClose.addEventListener('click', toggleCart)
+if (cartCloseWindow !== undefined) cartCloseWindow.addEventListener('click', toggleCart)
 

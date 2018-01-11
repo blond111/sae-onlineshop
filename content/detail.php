@@ -59,32 +59,38 @@
 
 <div class="use">
     <h2>Anwendung </h2>
-    <div class="container container-use">
-        <ol>
-            <li class="anwendung">
-                <ol>
-                    <li class="count-use">1</li>
-                    <li>einfach auftragen</li>
-                </ol>
-            </li>
-            <li class="anwendung">
-                <ol>
-                    <li class="count-use">2</li>
-                    <li>20 Minuten einwirken lassen</li>
-                </ol>
-            </li>
-            <li class="anwendung">
-                <ol>
-                    <li class="count-use">3</li>
-                    <li>abwaschen mit warmen Wasser</li>
-                </ol>
-            </li>
-            <li class="anwendung">
-                <ol>
-                    <li class="count-use">4</li>
-                    <li>Ergebnis genießen</li>
-                </ol>
-            </li>
-        </ol>
-    </div>
+    <div class="container container-use-all">
+        <div class="container container-use">
+            <ol>
+                <li class="anwendung">
+                    <ol>
+                        <li class="count-use">1</li>
+                        <li>einfach auftragen</li>
+                    </ol>
+                </li>
+                <li class="anwendung">
+                    <ol>
+                        <li class="count-use">3</li>
+                        <li>abwaschen mit <br>warmen Wasser</li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+        <div class="container container-use">
+            <ol>
+                <li class="anwendung">
+                    <ol>
+                        <li class="count-use">2</li>
+                        <li>20 Minuten einwirken lassen</li>
+                    </ol>
+                </li>
+                <li class="anwendung">
+                    <ol>
+                        <li class="count-use">4</li>
+                        <li>Ergebnis genießen</li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+    </div>    
 </div>
