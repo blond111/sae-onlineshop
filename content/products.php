@@ -51,7 +51,7 @@ if (isset($_SESSION['cart_id'])) {
 
             <div class="text-price">
                 <p>
-                    <?php echo $row['prodPreis']; ?>
+                    <?php echo $row['prodPreis']; ?><span>€</span>
                 </p>
             </div>
             <form action="" method="post">

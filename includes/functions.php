@@ -30,11 +30,7 @@ if (isset($_SESSION['usergroup'])) {
 }
 
 
-
-
-
-
-
+//Login Abfrage mit Fehlermeldungen sowie Passwordhash
 
 if (isset($_POST['do-login'])) {
     $sql = "SELECT id, username, password, usergroup FROM users WHERE username = '{$_POST['username']}'";
@@ -96,7 +92,7 @@ if (isset($_POST['do-login'])) {
 }
 
 
-
+//Funktion zur Steigerung oder Minderung der Warenkorbitems
 
 if (isset($_POST['update-cart'])) {
     $cartId = $_SESSION['cart_id'];
