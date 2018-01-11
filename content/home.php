@@ -16,7 +16,7 @@
 </div>
 
 <section class="content-list">
-    <img src="assets/img/Flasche.jpg">
+    <img alt="Flasche" src="assets/img/Flasche.jpg">
     <div class="list">
         <h2>Ein Produkt was jeder haben will</h2>
         <ul>
@@ -32,13 +32,13 @@
 <section class="container-referenz">
     <h2>ZU SEHEN IN </h2>
     <div class="referenzen">
-        <img src="assets/img/jolie_W.png">
-        <img src="assets/img/miss_logo.png">
-        <img src="assets/img/SEITENBLICK_Logo_GREYW.png">
+        <img alt="logo referenz" src="assets/img/jolie_W.png">
+        <img alt="logo referenz" src="assets/img/miss_logo.png">
+        <img alt="logo referenz" src="assets/img/SEITENBLICK_Logo_GREYW.png">
     </div>
     
     <div class="referenzen">
-        <img src="assets/img/logo_wienerin.png">
-        <img src="assets/img/logo_somo.png">
+        <img alt="logo referenz" src="assets/img/logo_wienerin.png">
+        <img alt="logo referenz" src="assets/img/logo_somo.png">
     </div>
 </section>
