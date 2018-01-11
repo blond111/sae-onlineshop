@@ -1,4 +1,4 @@
-<a href="index.php?page=users&action=new" class="btn btn-custom" style="float: right;">Neuen User anlegen</a>
+<a href="index.php?page=users&action=new" class="btn btn-custom">Neuen User anlegen</a>
 <table class="table">
     <thead>
     <tr>

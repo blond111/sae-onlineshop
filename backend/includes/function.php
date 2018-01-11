@@ -1,6 +1,8 @@
 <?php
 
-//Produktverwaltung
+//Produktverwaltung*************************
+
+//Produkte aus der Datenbank auslesen!
 
 if (isset($_POST['insert-prod'])) {
 
@@ -22,6 +24,8 @@ if (isset($_POST['insert-prod'])) {
     header('Location: index.php?page=product');
     exit();
 }
+
+//Produkte in der Datenbank überschreiben!
 
 if (isset($_POST['update-prod'])) {
     $prod_title = mysqli_real_escape_string($dblink, $_POST['prodtitle']);
@@ -46,6 +50,8 @@ if (isset($_POST['update-prod'])) {
 
 //USERVERWALTUNG
 
+//User aus der Datenbank auslesen!
+
 if (isset($_POST['insert-users'])) {
 
     $fname = mysqli_real_escape_string($dblink, $_POST['firstname']);
@@ -66,6 +72,8 @@ if (isset($_POST['insert-users'])) {
     header('Location: index.php?page=users');
     exit();
 }
+
+//User in der Datenbank überschreiben!
 
 if (isset($_POST['update-users'])) {
 

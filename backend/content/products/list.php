@@ -1,4 +1,4 @@
-<a href="index.php?page=product&action=new" class="btn btn-custom" style="float: right;">Neues Produkt anlegen</a>
+<a href="index.php?page=product&action=new" class="btn btn-custom">Neues Produkt anlegen</a>
 <table class="table">
     <thead>
     <tr>
@@ -19,7 +19,7 @@
         <tr>
             <td><?php echo $row['prodName']; ?></td>
             <td><?php echo $row['username']; ?></td>
-            <td><img style="width: 30%;" src="../<?php echo $row['prodBild']; ?>"></td>
+            <td><img style="width: 30%;" alt="Bild Flasche" src="../<?php echo $row['prodBild']; ?>"></td>
             <td><?php echo date('d.m.Y', $row['prodDatum']); ?></td>
             <td>
                 <a href="index.php?page=product&action=edit&id=<?php echo $row['id']; ?>">Bearbeiten</a> |

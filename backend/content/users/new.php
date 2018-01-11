@@ -1,4 +1,4 @@
-<h1 style="font-size: 16px;">Neuen User erstellen</h1>
+<h1 class="header-backend">Neuen User erstellen</h1>
 
 <form method="post" enctype="multipart/form-data">
     <div class="row">

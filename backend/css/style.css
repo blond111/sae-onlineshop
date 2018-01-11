@@ -45,6 +45,19 @@ ul, ol {
 .main{
     padding: 0% 0% 0% 17%;
 }
+.error404{
+    text-align: center;
+    height:400px;
+    margin-top: 20%;
+}
+
+.header-main{
+    font-weight: 300;
+}
+
+.header-backend{
+    font-size: 17px;
+}
 
 /**********Footer-Backend**************************************************/
 .bottom{

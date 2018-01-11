@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../assets/css/Navigation-with-Button1.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="css/style.css">
-    <!-- <script defer src="../assets/js/main.js"></script> -->
+    <script defer src="../assets/js/main.js"></script>
 </head>
 <body>
 <div id="wrapper">

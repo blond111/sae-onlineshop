@@ -8,7 +8,7 @@ if(mysqli_num_rows($res) <= 0){
 
     $row = mysqli_fetch_assoc($res);
     ?>
-    <h1 style="font-size: 17px;">User überarbeiten</h1>
+    <h1 class="header-backend">User überarbeiten</h1>
 
     <form method="post" enctype="multipart/form-data">
         <div class="row">
