@@ -41,7 +41,8 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#">
                             <i class="glyphicon glyphicon-user icon <?php if ($myusergroup != -1) echo 'icon-log' ?>"></i>
-                        </a>
+                            <?php if ($myusergroup != -1 )  echo "<p>{$_SESSION['uname']}</p>"; ?>
+                        </a>                       
 
                         <?php if ($myusergroup >= 0) { ?>
                         <ul class="dropdown-menu" role="menu">
