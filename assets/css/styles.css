@@ -35,7 +35,7 @@ a {
 }
 
 .icon {
-  font-size: 183%;
+  font-size: 36px;
   color: rgb(0, 0, 0);
 }
 
@@ -43,6 +43,25 @@ a {
   border: none;
   border-radius: 0px;
 }
+
+.cart-pic-header {
+  margin-right: 308px;
+  
+}
+
+.mycart-counter-header{
+  position: absolute;
+  border-radius: 40px;
+  top: 21px;
+  right: -3px;
+  background: rgb(236, 138, 64);
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  margin-right: 308px;
+  width: 20px;
+}
+
 
 .icon-log {
   color: rgb(236, 138, 64);
@@ -242,12 +261,6 @@ a {
   max-width: 41%;
   margin: 4% 7% 4% 7%;
   padding: 5% 0% 5% 0%;
-}
-
-@media (max-width: 991px) {
-  .item {
-    /*border:none;*/
-  }
 }
 
 .item img {
@@ -460,7 +473,7 @@ a {
   background-color: #fff;
   border-bottom: 1px solid #ececec;
   overflow: hidden;
-  padding: 22px;
+  padding: 27px;
   text-align: center;
 }
 

@@ -86,9 +86,9 @@
 
                     <li class="shop-cart">
                         <a href="#">
-                            <div class="mycart-container pull-right js-open-cart  <?php if($_GET['cart'] === 'open') echo 'mycart-container--hidden' ?>">
-                                <img src="assets/img/shopping_bag1600.png" class="bag-pic">
-                                <span class="mycart-counter" style="width: 20px;">1</span>
+                            <div class="mycart-container pull-right <?php if($_GET['cart'] === 'open') echo 'mycart-container--hidden' ?>">
+                                <img src="assets/img/shopping_bag1600.png" class="bag-pic cart-pic-header">
+                                <span class="mycart-counter-header">1</span>
                             </div>
                         </a>
                     </li>
