@@ -49,10 +49,17 @@
                 <label for="title">Username</label>
                 <input type="text" name="user" class="form-control">
             </div>
-        </div><div class="col-sm-6">
+        </div>
+        <div class="col-sm-6">
             <div class="form-group">
                 <label for="title">Passwort</label>
                 <input type="text" name="password-one" class="form-control">
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="title">USER Gruppe</label>
+                <input type="text" name="usergroup" class="form-control">
             </div>
         </div>
         <div class="col-sm-12">

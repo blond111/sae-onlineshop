@@ -2,7 +2,7 @@
 
 //Produktverwaltung*************************
 
-//Produkte aus der Datenbank auslesen!
+//Produkte in die Datenbank einlesen!
 
 if (isset($_POST['insert-prod'])) {
 
@@ -50,7 +50,7 @@ if (isset($_POST['update-prod'])) {
 
 //USERVERWALTUNG
 
-//User aus der Datenbank auslesen!
+//User in die Datenbank einlesen!
 
 if (isset($_POST['insert-users'])) {
 
@@ -62,12 +62,13 @@ if (isset($_POST['insert-users'])) {
     $plz = mysqli_real_escape_string($dblink, $_POST['plz']);
     $ort = mysqli_real_escape_string($dblink, $_POST['ort']);
     $username = mysqli_real_escape_string($dblink, $_POST['user']);
+    $usergroup = mysqli_real_escape_string($dblink, $_POST['usergroup']);
     
     $password = mysqli_real_escape_string($dblink, $_POST['password-one']);
     $pw_hash = sha1($password.'1234').':1234';
 
-    $sql = "INSERT INTO users (fname, lname, email, street, door, plz, ort, username, password) 
-                VALUES ('$fname', '$lname', '$email', '$street', '$door', '$plz', '$ort', '$username', '$pw_hash')";
+    $sql = "INSERT INTO users (fname, lname, email, street, door, plz, ort, username, password, usergroup) 
+                VALUES ('$fname', '$lname', '$email', '$street', '$door', '$plz', '$ort', '$username', '$pw_hash', 'usergroup')";
 
     mysqli_query($dblink, $sql);
 
