@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand header-logo" href="../index.php?page=home">
-                        <img src="../assets/img/logo.png">
+                        <img alt="logo" src="../assets/img/logo.png">
                     </a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
                         <span class="sr-only">Toggle navigation</span>

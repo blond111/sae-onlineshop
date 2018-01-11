@@ -59,18 +59,6 @@ if(mysqli_num_rows($res) <= 0){
                         <input class="form-control" id="ort" type="text" name="ort" placeholder="" value="<?php echo $row['ort']; ?>">
                     </div>
                 </div>
-                <!--<div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Passwort Neu*</label><br>
-                        <input class="form-control" id="password-one" type="text" name="password-one" placeholder="" value="">
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Passwort Neu Wiederholen*</label><br>
-                        <input class="form-control" id="password-two" type="text" name="password-two" placeholder="" value="">
-                    </div>
-                </div>-->
                 <div class="col-sm-12">
                     <div class="form-group">
                         <input id="submit_btn" class="btn btn-custom" type="submit" name="update-address" value="Update">

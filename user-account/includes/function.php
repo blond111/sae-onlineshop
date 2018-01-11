@@ -10,8 +10,6 @@ if (isset($_POST['update-address'])) {
     $door = mysqli_real_escape_string($dblink, $_POST['door']);
     $plz = mysqli_real_escape_string($dblink, $_POST['plz']);
     $ort = mysqli_real_escape_string($dblink, $_POST['ort']);
-    /*$username = mysqli_real_escape_string($dblink, $_POST['user']);
-    $password = mysqli_real_escape_string($dblink, $_POST['password-one']);*/
 
     $sql = "UPDATE users SET fname = '$fname', lname = '$lname', email = '$email', street = '$street', door = '$door', plz = '$plz', ort = '$ort' WHERE id = '{$_SESSION['uid']}'";
 
