@@ -14,6 +14,12 @@ if (! isset($_SESSION['timeout'])) {
     $_SESSION['timeout'] = false;
 }
 
+
+if (! isset($_SESSION['cart_id'])) {
+    $cartId = $_SESSION['cart_id'] = 0;
+}
+
+
 // Login Counter: Nur eine Pseude-security: Nicht production ready, da Sessions jederzeit neu gestartet werden können (z.B.Brute Force-Attacke)
 if ($_SESSION['login_counter'] >= 3) {
     if (($_SESSION['timeout'] + 60) < time()) {
@@ -95,7 +101,6 @@ if (isset($_POST['do-login'])) {
 //Funktion zur Steigerung oder Minderung der Warenkorbitems
 
 if (isset($_POST['update-cart'])) {
-    $cartId = $_SESSION['cart_id'];
     $prodId = mysqli_real_escape_string($dblink, $_POST['prodId']);
 
     // Suche Produktpreis

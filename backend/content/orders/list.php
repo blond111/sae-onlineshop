@@ -24,7 +24,7 @@
             <td><?php echo date('d.m.Y', $row['orderDatum']); ?></td>
             <td><?php echo $row['prod_id']; ?></td>
             <td><?php echo $row['qty']; ?></td>
-            <td><?php echo $row['PreisTotal']; ?></td>
+            <td><?php echo ($row['qty'] * $row['prodPreisNow']) ; ?></td>
             <td>
                 <a href="index.php?page=orders&action=edit&id=<?php echo $row['id']; ?>">Bearbeiten</a> |
                 <a href="includes/delete_orders.php?id=<?php echo $row['id']; ?>">Löschen</a>

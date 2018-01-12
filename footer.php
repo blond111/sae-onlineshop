@@ -66,14 +66,14 @@
                 <span class="mycart-counter">1 </span>
             </div>
         </div>
-
-        <!-- //TODO: LEFT JOIN FREMDKEY MIT PRIMÄRKEY will nicht  -->
+        
         <div class="cart-window-body">
             <?php
-            // $sql = "SELECT cartitems.prodPriceNow, products.* FROM cartitems LEFT JOIN products ON cartitems.prod_id = cartitems.id";
-            $sql = "SELECT *, cartitems.prodPriceNow FROM products LEFT JOIN cartitems ON cartitems.prod_id = cartitems.id ";
-            // $sql = "SELECT * FROM products";
+            //Seletieren Cartitems und Produkte um diese zu erhöhen und zu vermindern !
+            $sql = "SELECT * FROM cartitems LEFT JOIN products ON cartitems.prod_id = products.id WHERE cartitems.cart_id = $cartId";
             $res = mysqli_query($dblink, $sql);
+
+            $totalSum = 0;
 
             while ($row = mysqli_fetch_assoc($res)) {
             ?>
@@ -88,50 +88,30 @@
                         <span class="cart-produ-title"><?php echo $row['prodName']; ?></span>
                         <div class="cart-produ-qty">
                             <form action="" method="post">
-                                <!-- <button class="btn btn-default qty-btn js-qty-plus" type="button">+</button>
-                                <input min="0" max="99" class="input-sm qty-text" size="5" value="0" type="number"> -->
-                                <!-- //HIER BIN ICH  -->
                                 <input type="hidden" name= "prodId" value="<?php echo $row['id']; ?>">
                                 <input type="hidden" name= "minus">
-                                <input class="btn btn-warning active btn-lg" type="submit" name="update-cart" value="MINUS">
-                                <!-- <button class="btn btn-default qty-btn js-qty-minus" type="button">-</button> -->
+                                <input class="btn btn-default qty-btn js-qty-plus" type="submit" name="update-cart" value="-">
                             </form>
+                            <span><?php echo $row['qty']; ?></span>
+                            <form action="" method="post">
+                                <input type="hidden" name= "prodId" value="<?php echo $row['id']; ?>">
+                                <input class="btn btn-default qty-btn js-qty-plus" type="submit" name="update-cart" value="+">
+                            </form> 
                         </div>
-                        <?php
-                        $sql = "SELECT prodPriceNow FROM cartitems";
-                        $res = mysqli_query($dblink, $sql);
 
-                        while ($row = mysqli_fetch_assoc($res)) {
-                        ?>
-                            <p class="cart-produ-price"><?php echo $row['prodPriceNow'];?><span>€</span></p>
-                        <?php }?>
+                        <?php $prodSum = $row['prodPriceNow'] * $row['qty']; ?>
+                        <?php $totalSum += $prodSum; ?>
+
+                        <p class="cart-produ-price"><?php echo $prodSum;?> €</p>
                     </div>
                 </div>
+                
             <?php } ?>
-
-            <!-- <div class="cart-item">
-                <div class="cart-thumbnail">
-                    <div class="thumbnail">
-                        <img "Flasche plus Pinsel" src="assets/img/Flaschpluspinsel.jpg">
-                    </div>
-                </div>
-
-                <div class="cart-details">
-                    <span class="cart-produ-title">SHINE &amp; FINE 250g</span>
-                    <div class="cart-produ-qty">
-                        <button class="btn btn-default qty-btn" type="button">+</button>
-                        <input min="0" max="99" class="input-sm qty-text" size="5" value="0" type="number">
-                        <button class="btn btn-default qty-btn" type="button">-</button>
-                    </div>
-
-                    <span class="cart-produ-price">85 €</span>
-                </div>
-            </div> -->
 
             <div class="cart-total">
                 <div class="grand-total">
                     <span>Total</span>
-                    <span class="cart-total-price">100 €</span>
+                    <p class="cart-total-price"><?php echo $totalSum;?> €</p>
                 </div>
             </div>
         </div>
