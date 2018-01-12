@@ -6,9 +6,9 @@ if($_SESSION['login'] != 1){
 
 } else {
     include "../../includes/dbconnect.php";
-    $sql = "DELETE FROM products WHERE id = '{$_GET['id']}'";
+    $sql = "DELETE FROM orders WHERE id = '{$_GET['id']}'";
     mysqli_query($dblink, $sql);
 
-    header('Location: ../index.php?page=products');
+    header('Location: ../index.php?page=orders');
     exit();
 }

@@ -102,6 +102,28 @@ if (isset($_POST['update-users'])) {
 
 }
 
+//Orders in der Datenbank überschreiben!
+
+//TO Richtige query und richtiges einlesen in die richtige Tabelle!
+
+if (isset($_POST['update-prod'])) {
+    $prod_title = mysqli_real_escape_string($dblink, $_POST['prodtitle']);
+    $prod_content = mysqli_real_escape_string($dblink, $_POST['prodcontent']);
+    $prod_price = mysqli_real_escape_string($dblink, $_POST['prodprice']);
+
+    $prod_img = "uploads/" . $_FILES['prodimg']['name'];
+
+    move_uploaded_file($_FILES['prodimg']['tmp_name'], "../" . $prod_img);
+
+    $sql = "UPDATE products SET prodName = '$prod_title', prodBeschreibung = '$prod_content', prodPreis = '$prod_price', prodBild = '$prod_img' WHERE id = '{$_GET['id']}'";
+
+    mysqli_query($dblink, $sql);
+
+    header('Location: index.php?page=product');
+    exit();
+
+
+}
 
 
 ?>

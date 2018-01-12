@@ -2,8 +2,15 @@
     <div class="container">
         <h1 class="header-main"><?php echo $title; ?></h1>
         <section class="section order-summary">
-            <div class="container">
-<!-- TO DO: Cart auslesen mit left JOin und Datenbanken verbinden ! -->
+            <?php
+            $sql = "SELECT * FROM cart WHERE  id='{$_SESSION['uid']}'";
+            $res = mysqli_query($dblink, $sql);
+
+            while($row = mysqli_fetch_assoc($res)){
+            ?>
+                <div class="container">
+    <!-- TO DO: Cart auslesen mit left JOin und Datenbanken verbinden ! -->
+    <!-- Cart -Cartitems- uid verbinden und auslesen -->
                     <div class="row order-summary-container">
                         <div class="cart-item">
                             <div class="cart-thumbnail">
@@ -32,8 +39,8 @@
                             </div>
                         </div>
                     </div>
-                
-            </div>
+                </div>
+            <?php } ?>
         </section>
     </div>   
 </section>
