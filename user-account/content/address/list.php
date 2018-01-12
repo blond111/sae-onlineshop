@@ -8,7 +8,7 @@
 
                 while($row = mysqli_fetch_assoc($res)){
                 ?>
-                    <a href="index.php?page=address&action=edit" class="link-edit link-edit-account">Bearbeiten </a>
+                    <a href="index.php?page=address&action=edit&from=user-account&frompage=address" class="link-edit link-edit-account">Bearbeiten </a>
                     <div class="row">
                         <div class="col-md-4 address-summary">
                             <span><?php echo $row['lname']; ?></span>

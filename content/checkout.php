@@ -59,7 +59,7 @@ if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] == -1) {
 
                     while($row = mysqli_fetch_assoc($res)){
                     ?>
-                        <a href="user-account/index.php?page=address&action=edit" class="link-edit link-edit-account">Bearbeiten </a>
+                        <a href="user-account/index.php?page=address&action=edit&frompage=checkout" class="link-edit link-edit-account">Bearbeiten </a>
                         <div class="row">
                             <div class="col-md-4 address-summary">
                                 <span><?php echo $row['lname']; ?></span>
@@ -80,7 +80,9 @@ if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] == -1) {
     <section class="section checkout-address">
         <div class="container">
             <div class="row">
-                <a class="btn btn-custom" type="button" href="index.php?page=finish">BESTELLEN</a>
+                <form method="post" action="">
+                    <input class="btn btn-custom" type="submit" name="finish-order" value="BESTELLEN">
+                </form>
             </div>
         </div>
     </section>

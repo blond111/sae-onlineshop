@@ -101,51 +101,32 @@ if (isset($_POST['send-contact'])) {
         $sql = "INSERT INTO users (fname, lname, email, street, door, plz, ort, username, password, usergroup) 
                 VALUES ('$fname', '$lname', '$email', '$street', '$door', '$plz', '$ort', '$username', '$pw_hash', '0')";
 
-        var_dump($sql);
-
         mysqli_query($dblink, $sql);
-    }
 
-    // TODO :EINGELOGGT sein wenn man sich regestreiert 
-
-    if (isset($_POST['send-contact'])) {
-        $sql = "SELECT username, password FROM users WHERE username = '{$_POST['username']}'";
+        
+        // Einloggen
+        $sql = "SELECT * FROM users WHERE username = '$username'";
         $res = mysqli_query($dblink, $sql);
     
         if (mysqli_num_rows($res) == 1 ) {
             $user = mysqli_fetch_assoc($res);
     
-            $pw_hash = explode(":", $user['password']);
-    
-            if ($pw_hash[0] == sha1($_POST['password'] . $pw_hash[1])) {
-    
-                $_SESSION['login'] = 1;
-                $_SESSION['uname'] = $user['username'];
-                $_SESSION['uid'] = $user['id'];
-                $_SESSION['usergroup'] = $user['usergroup'];
-    
-                
+            $_SESSION['login'] = 1;
+            $_SESSION['uname'] = $user['username'];
+            $_SESSION['uid'] = $user['id'];
+            $_SESSION['usergroup'] = $user['usergroup'];
+
+            if (isset($_GET['frompage'])) {
+                header('Location: ' . ((isset($_GET['from'])) ? ($_GET['from'] . '/') : '') . 'index.php?page=' . $_GET['frompage']);
+                exit();
+            } 
+        
+            else {
                 header('Location: user-account/index.php?page=account');
                 exit();
             }
         }
-                
     }
-
-
-    if ($error === false) {
-        $show_form = false;
-
-
-        //Email senden!
-
-        /*// Funktionalität für Mail wegsenden
-        $email_body = "";
-        $headers = "From: <bb@sae.at>";
-        //mail("aa@sae.at", "Registrierung Onlineshop", $email_body, $headers);*/
-    }
-
-
 }
 ?>
 
@@ -168,7 +149,7 @@ if (isset($_POST['send-contact'])) {
                             <label>Ihr Vorame*</label>
                             <br>
                             <?php if (isset($error_msg['firstname'])) echo "<p class=\"error_message\">{$error_msg['firstname']}</p>"; ?>
-                            <input class="form-control" id="firstname" type="text" name="firstname" placeholder="Name" value="<?php if (isset($_POST['send-contact'])) echo $_POST['firstname']; ?>">
+                            <input class="form-control" id="firstname" type="text" required name="firstname" placeholder="Name" value="<?php if (isset($_POST['send-contact'])) echo $_POST['firstname']; ?>">
                         </div>
                     </div>
 
@@ -177,7 +158,7 @@ if (isset($_POST['send-contact'])) {
                             <label>Ihr Nachname*</label>
                             <br>
                             <?php if (isset($error_msg['lastname'])) echo "<p class=\"error_message\">{$error_msg['lastname']}</p>"; ?>
-                            <input class="form-control" id="lastname" type="text" name="lastname" placeholder="Nachname" value="<?php if (isset($_POST['send-contact'])) echo $_POST['lastname']; ?>">
+                            <input class="form-control" id="lastname" type="text" required name="lastname" placeholder="Nachname" value="<?php if (isset($_POST['send-contact'])) echo $_POST['lastname']; ?>">
                         </div>
                     </div>
 
@@ -186,7 +167,7 @@ if (isset($_POST['send-contact'])) {
                             <label>Ihre E-mail*</label>
                             <br>
                             <?php if (isset($error_msg['email'])) echo "<p class=\"error_message\">{$error_msg['email']}</p>"; ?>
-                            <input class="form-control" id="email" type="text" name="email" placeholder="E-mail" value="<?php if (isset($_POST['send-contact'])) echo $_POST['email']; ?>">
+                            <input class="form-control" id="email" type="email" required name="email" placeholder="E-mail" value="<?php if (isset($_POST['send-contact'])) echo $_POST['email']; ?>">
                         </div>
                     </div>
 
@@ -195,7 +176,7 @@ if (isset($_POST['send-contact'])) {
                             <label>Straße*</label>
                             <br>
                             <?php if (isset($error_msg['street'])) echo "<p class=\"error_message\">{$error_msg['street']}</p>"; ?>
-                            <input class="form-control" id="street" type="text" name="street" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['street']; ?>">
+                            <input class="form-control" id="street" type="text" required name="street" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['street']; ?>">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -203,7 +184,7 @@ if (isset($_POST['send-contact'])) {
                             <label>Tür/Appartment*</label>
                             <br>
                             <?php if (isset($error_msg['door'])) echo "<p class=\"error_message\">{$error_msg['door']}</p>"; ?>
-                            <input class="form-control" id="door" type="text" name="door" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['door']; ?>">
+                            <input class="form-control" id="door" type="text" required name="door" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['door']; ?>">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -211,7 +192,7 @@ if (isset($_POST['send-contact'])) {
                             <label>PLZ*</label>
                             <br>
                             <?php if (isset($error_msg['plz'])) echo "<p class=\"error_message\">{$error_msg['plz']}</p>"; ?>
-                            <input class="form-control" id="plz" type="text" name="plz" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['plz']; ?>">
+                            <input class="form-control" id="plz" type="text" required name="plz" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['plz']; ?>">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -219,7 +200,7 @@ if (isset($_POST['send-contact'])) {
                             <label>Ort*</label>
                             <br>
                             <?php if (isset($error_msg['ort'])) echo "<p class=\"error_message\">{$error_msg['ort']}</p>"; ?>
-                            <input class="form-control" id="ort" type="text" name="ort" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['ort']; ?>">
+                            <input class="form-control" id="ort" type="text" required name="ort" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['ort']; ?>">
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -227,7 +208,7 @@ if (isset($_POST['send-contact'])) {
                             <label>Username*</label>
                             <br>
                             <?php if (isset($error_msg['user'])) echo "<p class=\"error_message\">{$error_msg['user']}</p>"; ?>
-                            <input class="form-control" id="user" type="text" name="user" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['user']; ?>">
+                            <input class="form-control" id="user" type="text" required name="user" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['user']; ?>">
 
                         </div>
                     </div>
@@ -238,7 +219,7 @@ if (isset($_POST['send-contact'])) {
                             <?php if (isset($error_msg['password-one'])) echo "<p class=\"error_message\">{$error_msg['password-one']}</p>"; ?>
                             <?php if (isset($error_msg['password-two'])) echo "<p class=\"error_message\">{$error_msg['password-two']}</p>"; ?>
                             <?php if (isset($error_msg['password'])) echo "<p class=\"error_message\">{$error_msg['password']}</p>"; ?>
-                            <input class="form-control" id="password-one" type="text" name="password-one" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['password-one']; ?>">
+                            <input class="form-control" id="password-one" type="password" required minlength="7" name="password-one" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['password-one']; ?>">
 
                         </div>
                     </div>
@@ -246,7 +227,7 @@ if (isset($_POST['send-contact'])) {
                         <div class="form-group">
                             <label>Passwort wiederholen*</label>
                             <br>
-                            <input class="form-control" id="password-two" type="text" name="password-two" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['password-two']; ?>">
+                            <input class="form-control" id="password-two" type="password" required minlength="7" name="password-two" placeholder="" value="<?php if (isset($_POST['send-contact'])) echo $_POST['password-two']; ?>">
 
                         </div>
                     </div>

@@ -35,7 +35,9 @@
                         }
                         echo "</div>";
                     } ?>
-                    <div class="loginsuccess"><a href="index.php?page=registrierung">Hier Registrieren</a></div>
+
+                    
+                    <div class="loginsuccess"><a href="index.php?page=registrierung<?php echo ((isset($_GET['frompage'])) ? ('&frompage=' . $_GET['frompage']) : ''); ?>">Hier Registrieren</a></div>
                 </form>
             </div>
         </div>

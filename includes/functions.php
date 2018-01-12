@@ -162,3 +162,14 @@ if (isset($_POST['update-cart'])) {
     exit();
 }
 
+if (isset($_POST['finish-order'])) {
+    
+    $sql = "UPDATE cart SET order_finished = true WHERE id = '$cartid' ";
+    mysqli_query($dblink, $sql); 
+    
+    unset($cartid);
+    unset($_SESSION["cart_id"]);
+    
+    header('Location: index.php?page=finish');
+    exit();
+}

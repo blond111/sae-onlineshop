@@ -15,8 +15,15 @@ if (isset($_POST['update-address'])) {
 
     mysqli_query($dblink, $sql);
 
-    header('Location: index.php?page=address');
-    exit();
+    if (isset($_GET['frompage'])) {
+        header('Location: ../' . ((isset($_GET['from'])) ? ($_GET['from'] . '/') : '') . 'index.php?page=' . $_GET['frompage']);
+        exit();
+    }
+
+    else {
+        header('Location: index.php?page=address');
+        exit();
+    }
 }
 
 ?>
