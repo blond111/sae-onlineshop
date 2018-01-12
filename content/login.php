@@ -35,7 +35,7 @@
                         }
                         echo "</div>";
                     } ?>
-                    <div class="loginsuccess"><a href="index.php?page=registrierung">Neuen Account erstellen</a></div>
+                    <div class="loginsuccess"><a href="index.php?page=registrierung">Hier Registrieren</a></div>
                 </form>
             </div>
         </div>

@@ -67,38 +67,46 @@
             </div>
         </div>
 
+        <!-- //TODO: LEFT JOIN FREMDKEY MIT PRIMÄRKEY will nicht  -->
         <div class="cart-window-body">
             <?php
-
-            $sql = "SELECT * FROM products";
+            // $sql = "SELECT cartitems.prodPriceNow, products.* FROM cartitems LEFT JOIN products ON cartitems.prod_id = cartitems.id";
+            $sql = "SELECT *, cartitems.prodPriceNow FROM products LEFT JOIN cartitems ON cartitems.prod_id = cartitems.id ";
+            // $sql = "SELECT * FROM products";
             $res = mysqli_query($dblink, $sql);
 
             while ($row = mysqli_fetch_assoc($res)) {
             ?>
-            <div class="cart-item">
-                <div class="cart-thumbnail">
-                    <div class="thumbnail">
-                        <img alt="Flasche" src="assets/img/Flasche.jpg">
-                    </div>
-                </div>
-
-                <div class="cart-details">
-                    <span class="cart-produ-title">SHINE &amp; FINE 250g</span>
-                    <div class="cart-produ-qty">
-                        <form action="" method="post">
-                            <!-- <button class="btn btn-default qty-btn js-qty-plus" type="button">+</button>
-                            <input min="0" max="99" class="input-sm qty-text" size="5" value="0" type="number"> -->
-                            <!-- //HIER BIN ICH  -->
-                            <input type="hidden" name= "prodId" value="<?php echo $row['id']; ?>">
-                            <input type="hidden" name= "minus">
-                            <input class="btn btn-warning active btn-lg" type="submit" name="update-cart" value="MINUS">
-                            <!-- <button class="btn btn-default qty-btn js-qty-minus" type="button">-</button> -->
-                        </form>
+                <div class="cart-item">
+                    <div class="cart-thumbnail">
+                        <div class="thumbnail">
+                            <img alt="<?php echo $row['prodName']; ?>" src="<?php echo $row['prodBild']; ?>">
+                        </div>
                     </div>
 
-                    <p class="cart-produ-price">55<span>€</span></p>
+                    <div class="cart-details">
+                        <span class="cart-produ-title"><?php echo $row['prodName']; ?></span>
+                        <div class="cart-produ-qty">
+                            <form action="" method="post">
+                                <!-- <button class="btn btn-default qty-btn js-qty-plus" type="button">+</button>
+                                <input min="0" max="99" class="input-sm qty-text" size="5" value="0" type="number"> -->
+                                <!-- //HIER BIN ICH  -->
+                                <input type="hidden" name= "prodId" value="<?php echo $row['id']; ?>">
+                                <input type="hidden" name= "minus">
+                                <input class="btn btn-warning active btn-lg" type="submit" name="update-cart" value="MINUS">
+                                <!-- <button class="btn btn-default qty-btn js-qty-minus" type="button">-</button> -->
+                            </form>
+                        </div>
+                        <?php
+                        $sql = "SELECT prodPriceNow FROM cartitems";
+                        $res = mysqli_query($dblink, $sql);
+
+                        while ($row = mysqli_fetch_assoc($res)) {
+                        ?>
+                            <p class="cart-produ-price"><?php echo $row['prodPriceNow'];?><span>€</span></p>
+                        <?php }?>
+                    </div>
                 </div>
-            </div>
             <?php } ?>
 
             <!-- <div class="cart-item">
