@@ -53,24 +53,25 @@ if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] == -1) {
         <div class="container">
             <div class="row">
                 <div class="checkout-address-summary">
-                    <h2>Lieferadresse </h2>
-                    <a href="#" class="link-edit">Bearbeiten</a>
+                    <?php
+                    $sql = "SELECT * FROM users WHERE  id='{$_SESSION['uid']}'";
+                    $res = mysqli_query($dblink, $sql);
 
-                    <div class="row">
-                        <div class="col-md-4 address-summary">
-                            <h4>Adresse </h4>
-                            <span>Kritsch</span>
-                            <span>Barbara</span>
-                            <br>
-                            <span>Franz-Schubertstraße</span>
-                            <span>3</span>
-                            <br>
-                            <span>3013</span>
-                            <span>Tullnerbach</span>
-                            <br>
-                            <span>babsi@kritsch.at</span>
+                    while($row = mysqli_fetch_assoc($res)){
+                    ?>
+                        <a href="user-account/index.php?page=address&action=edit" class="link-edit link-edit-account">Bearbeiten </a>
+                        <div class="row">
+                            <div class="col-md-4 address-summary">
+                                <span><?php echo $row['lname']; ?></span>
+                                <span><?php echo $row['fname']; ?></span><br>
+                                <span><?php echo $row['street']; ?></span>
+                                <span><?php echo $row['door']; ?></span><br>
+                                <span><?php echo $row['plz']; ?></span>
+                                <span><?php echo $row['ort']; ?></span><br>
+                                <span><?php echo $row['email']; ?></span>
+                            </div>
                         </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
