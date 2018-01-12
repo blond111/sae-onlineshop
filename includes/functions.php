@@ -14,10 +14,21 @@ if (! isset($_SESSION['timeout'])) {
     $_SESSION['timeout'] = false;
 }
 
+// Get cartid (Gibt es in der Session schon eine Cart-ID, wenn nicht setzt eine Neue.)
+if (isset($_SESSION['cart_id'])) {
+    $cartid = $_SESSION['cart_id'];
+} else {
+    $userid = (isset($_SESSION['uid'])) ? $_SESSION['uid'] : NULL; // Ist der User angemeldet, speicher gleich auch User-ID.
+    $sql = "INSERT INTO cart (id, user_id) VALUES( NULL, '$userid' ) ";
+    $res = mysqli_query($dblink, $sql);
 
-if (! isset($_SESSION['cart_id'])) {
-    $cartId = $_SESSION['cart_id'] = 0;
+    $cartid = mysqli_insert_id($dblink);
+    $_SESSION['cart_id'] = $cartid;
 }
+
+
+
+
 
 
 // Login Counter: Nur eine Pseude-security: Nicht production ready, da Sessions jederzeit neu gestartet werden können (z.B.Brute Force-Attacke)
@@ -57,8 +68,8 @@ if (isset($_POST['do-login'])) {
             // Ergänzen von Username im Cart wenn man sich im nachhinein anmedlet!
             if (isset($_SESSION['cart_id'])) {
                 $thisUser = $user['id'];
-                $thisCartId = $_SESSION['cart_id'];
-                $sql = "UPDATE cart SET user_id = '$thisUser' WHERE id = '$thisCartId'";
+                $thiscartid = $_SESSION['cart_id'];
+                $sql = "UPDATE cart SET user_id = '$thisUser' WHERE id = '$thiscartid'";
                 $res = mysqli_query($dblink, $sql);
             }
 
@@ -111,7 +122,7 @@ if (isset($_POST['update-cart'])) {
     }
 
     // Ist dieses Produkt schon in meinem Warenkorb?
-    $sql = "SELECT id, qty FROM cartitems WHERE cart_id = '$cartId' AND prod_id = '$prodId'";
+    $sql = "SELECT id, qty FROM cartitems WHERE cart_id = '$cartid' AND prod_id = '$prodId'";
     $res = mysqli_query($dblink, $sql);
 
     while($row = mysqli_fetch_assoc($res)){
@@ -144,7 +155,7 @@ if (isset($_POST['update-cart'])) {
 
     // Wenn es noch nicht im Warenkorb ist...
     $qty = '1';
-    $sql = "INSERT INTO cartitems (cart_id, prod_id, qty, prodPriceNow) VALUES ('$cartId', '$prodId', '$qty', '$prodPriceNow')";
+    $sql = "INSERT INTO cartitems (cart_id, prod_id, qty, prodPriceNow) VALUES ('$cartid', '$prodId', '$qty', '$prodPriceNow')";
     mysqli_query($dblink, $sql);    
 
     header('Location: index.php?page=products&cart=open');

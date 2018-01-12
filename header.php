@@ -85,11 +85,25 @@
                         <?php } ?>
                     </li>
 
+                    <?php
+                    //Seletieren Anzahl an Produkten!
+                    $sql = "SELECT '$cartid' , qty FROM cartitems WHERE cart_id = '$cartid'";
+                    $res = mysqli_query($dblink, $sql);
+
+                    $totalQty = 0;
+
+                    while ($row = mysqli_fetch_assoc($res)) {
+                        
+                        $prodQty = $row['qty'];
+                        $totalQty += $prodQty;
+                    }
+                    ?>
+
                     <li class="shop-cart">
                         <a href="#">
                             <div class="mycart-container pull-right <?php if($_GET['cart'] === 'open') echo 'mycart-container--hidden' ?>">
                                 <img src="assets/img/shopping_bag1600.png" class="bag-pic cart-pic-header">
-                                <span class="mycart-counter-header">1</span>
+                                <span class="mycart-counter-header"><?php echo $totalQty;?></span>
                             </div>
                         </a>
                     </li>

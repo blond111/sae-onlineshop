@@ -63,14 +63,13 @@
 
             <div class="mycart-container pull-right">
                 <img alt="Mein Warenkorb" src="assets/img/shopping_bag1600.png" class="bag-pic">
-                <span class="mycart-counter">1 </span>
             </div>
         </div>
         
         <div class="cart-window-body">
             <?php
             //Seletieren Cartitems und Produkte um diese zu erhöhen und zu vermindern !
-            $sql = "SELECT * FROM cartitems LEFT JOIN products ON cartitems.prod_id = products.id WHERE cartitems.cart_id = $cartId";
+            $sql = "SELECT * FROM cartitems LEFT JOIN products ON cartitems.prod_id = products.id WHERE cartitems.cart_id = $cartid";
             $res = mysqli_query($dblink, $sql);
 
             $totalSum = 0;
