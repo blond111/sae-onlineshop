@@ -1,5 +1,5 @@
 <?php
-
+// Ist der Angemeldete berechtigt die Seite zu sehen?
 if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] == -1) {
     header('Location: index.php?page=login&frompage=checkout');
     exit();
@@ -54,6 +54,7 @@ if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] == -1) {
             <div class="row">
                 <div class="checkout-address-summary">
                     <?php
+                    // Auslesen der Users Tabelle, wo die id der Tabelle der "Get id" entspricht
                     $sql = "SELECT * FROM users WHERE  id='{$_SESSION['uid']}'";
                     $res = mysqli_query($dblink, $sql);
 

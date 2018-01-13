@@ -1,5 +1,6 @@
 <?php
-
+// Formularvaliderung mit PHP(serverseitig) als auch mit requiered und type (clientseitig) mit diversen css stylings.
+// Error Benachrichtigung werden durch requiered unterdrückt, außer PHP ist gescheiter--> siehe e-mail dann erscheint die Error Nachricht. 
 $error = false;
 $error_msg = array();
 $agb = false;

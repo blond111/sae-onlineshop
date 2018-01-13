@@ -1,5 +1,8 @@
 <section class="login-section loginwait">
 <?php
+    // Öfters als 3 mal FALSCH eingeloggt wird man für 60 sec gesperrt und ein Kommentar wird eingebledet. 
+    //Sonst wird Login Formular eingeblendet mit diversen Error Nachrichten für die Formvalidierung.
+    
     if ($_SESSION['login_counter'] >= 3) {
 
         $time_to_login = $_SESSION['timeout'] + 60;

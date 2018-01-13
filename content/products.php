@@ -16,7 +16,8 @@
 
 <div class="row product-row">
     <?php
-
+    // Auslesen der Products Tabelle 
+    
     $sql = "SELECT * FROM products";
     $res = mysqli_query($dblink, $sql);
 
