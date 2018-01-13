@@ -25,13 +25,13 @@ if (mysqli_num_rows($res) <= 0){
                         <input type="text" name="qty" class="form-control" value="<?php echo $row['qty']; ?>">
                     </div>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label for="title">Einzel Preis</label>
                         <input type="text" class="form-control" name="prodPriceNow" value="<?php echo $row['prodPriceNow']; ?>">
                     </div>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label for="title">Preis Total</label>
                         <input type="text" class="form-control" name="totalPreis" value="<?php echo $row['qty'] * $row['prodPriceNow']; ?>">
