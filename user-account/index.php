@@ -6,7 +6,6 @@ session_start();
 
 
 include '../includes/dbconnect.php';
-include 'includes/function.php';
 
 $page = (isset($_GET['page'])) ? $_GET['page'] : "account";
 
