@@ -1,4 +1,5 @@
 <?php
+//Auslesen von den Tabellen Cartitems, Cart und Produkts
 
 $sql = "SELECT cartitems.*, products.prodName FROM cartitems LEFT JOIN cart ON cartitems.cart_id = cart.id JOIN products ON products.id = prod_id WHERE cart_id = '{$_GET['id']}' ";
 $res = mysqli_query($dblink, $sql);

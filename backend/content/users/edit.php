@@ -1,4 +1,6 @@
 <?php
+// Auslesen der Tabelle Users, wo die id der Tabelle der "GET id" entspricht
+
 $sql = "SELECT * FROM users WHERE id = '{$_GET['id']}' LIMIT 1";
 $res = mysqli_query($dblink, $sql);
 

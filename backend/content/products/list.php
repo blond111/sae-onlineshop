@@ -11,6 +11,7 @@
     </thead>
     <tbody>
     <?php
+    // Auslesen von den Tabellen Products und Users wobei sie nac der Products Id geordnet wird.
     $sql = "SELECT products.*, users.username FROM products LEFT JOIN users ON products.user_id = users.id ORDER BY id DESC";
     $res = mysqli_query($dblink, $sql);
 

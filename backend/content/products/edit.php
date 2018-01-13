@@ -1,4 +1,6 @@
 <?php
+//Auslesen von der Tabelle Products, wo die id der Tabelle der "GET id" entspricht
+
 $sql = "SELECT * FROM products WHERE id = '{$_GET['id']}' LIMIT 1";
 $res = mysqli_query($dblink, $sql);
 

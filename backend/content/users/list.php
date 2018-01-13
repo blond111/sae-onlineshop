@@ -17,6 +17,8 @@
     </thead>
     <tbody>
     <?php
+    // Auslesen der Tabelle Users nach id Sortiert
+    
     $sql = "SELECT * FROM users ORDER BY id ASC";
     $res = mysqli_query($dblink, $sql);
 

@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// DB und Funktionen includieren, sowie Seiten per PhP zusammenstellen und Prüfen ob der Angemeldete eine Berechtigung für diese Seite hat.
 
 include '../includes/dbconnect.php';
 include 'includes/function.php';

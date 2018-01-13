@@ -9,6 +9,8 @@
     </thead>
     <tbody>
     <?php
+    // Auslesen von der Tabelle Cart welche als Order definiert sind!
+    
     $sql = "SELECT * FROM cart WHERE order_finished = 1";
     $res = mysqli_query($dblink, $sql);
 
