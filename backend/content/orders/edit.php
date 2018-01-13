@@ -1,6 +1,6 @@
 <?php
 
-$sql = "SELECT cartitems.*, products.prodName FROM cartitems LEFT JOIN cart ON cartitems.cart_id = cart.id JOIN products ON products.id = prod_id WHERE cart.user_id = '{$_GET['id']}' ";
+$sql = "SELECT cartitems.*, products.prodName FROM cartitems LEFT JOIN cart ON cartitems.cart_id = cart.id JOIN products ON products.id = prod_id WHERE cart_id = '{$_GET['id']}' ";
 $res = mysqli_query($dblink, $sql);
 
 if (mysqli_num_rows($res) <= 0){
@@ -16,7 +16,8 @@ if (mysqli_num_rows($res) <= 0){
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="title">Produkt</label>
-                        <input type="text" name="prod_id" class="form-control" value="<?php echo $row['prodName']; ?>">
+                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                        <input type="text" name="prodName" class="form-control" value="<?php echo $row['prodName']; ?>">
                     </div>
                 </div>
                 <div class="col-sm-6">
