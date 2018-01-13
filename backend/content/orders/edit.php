@@ -1,6 +1,6 @@
 <?php
-// TO: Query richtig setzten!
-$sql = "SELECT * FROM products WHERE id = '{$_GET['id']}' LIMIT 1";
+// $sql = "SELECT * FROM cartitems LEFT JOIN cart ON cart_id = cart.id WHERE order_finished = 1 AND user_id = '{$_SESSION['uid']}' ";
+$sql = "SELECT * FROM cartitems WHERE user_id = '{$_GET['id']}'";
 $res = mysqli_query($dblink, $sql);
 
 if(mysqli_num_rows($res) <= 0){
@@ -15,20 +15,26 @@ if(mysqli_num_rows($res) <= 0){
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="title">Bestellnummer</label>
-                    <input type="text" name="ordernumber" class="form-control" value="<?php echo $row['cart_id']; ?>">
+                    <label for="title">Produkt</label>
+                    <input type="text" name="prod_id" class="form-control" value="<?php echo $row['prod_id']; ?>">
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="title">Kundennummer</label>
-                    <input type="text" name="usernumber" class="form-control" value="<?php echo $row['user_id']; ?>">
+                    <label for="title">Anzahl</label>
+                    <input type="text" name="qty" class="form-control" value="<?php echo $row['qty']; ?>">
                 </div>
             </div>
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="title"><?php echo $row['podName']; ?></label>
-                    <input type="text" class="form-control" name="qty" value="<?php echo $row['qty']; ?>">
+                    <label for="title">Einzel Preis</label>
+                    <input type="text" class="form-control" name="prodPriceNow" value="<?php echo $row['prodPriceNow']; ?>">
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="title">Preis Total</label>
+                    <input type="text" class="form-control" name="totalPreis" value="<?php echo $row['qty'] * $row['prodPriceNow']; ?>">
                 </div>
             </div>
             <div class="col-sm-12">
