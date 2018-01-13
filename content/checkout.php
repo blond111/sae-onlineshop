@@ -12,41 +12,43 @@ if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] == -1) {
         <div class="container">
             <div class="row order-summary-container">
                 <h1>Bestellung </h1>
-                <div class="cart-item">
-                    <div class="cart-thumbnail">
-                        <div class="thumbnail">
-                            <img alt="Flasche" src="assets/img/Flasche.jpg">
+                <?php
+                //Seletieren Cartitems und Produkte um diese zu erhöhen und zu vermindern !
+                $sql = "SELECT * FROM cartitems LEFT JOIN products ON cartitems.prod_id = products.id WHERE cartitems.cart_id = $cartid";
+                $res = mysqli_query($dblink, $sql);
+
+                $totalSum = 0;
+
+                while ($row = mysqli_fetch_assoc($res)) {
+                ?>
+                    <div class="cart-item">
+                        <div class="cart-thumbnail">
+                            <div class="thumbnail">
+                                <img alt="<?php echo $row['prodName']; ?>" src="<?php echo $row['prodBild']; ?>">
+                            </div>
+                        </div>
+
+                        <div class="cart-details">
+                            <span class="cart-produ-title"><?php echo $row['prodName']; ?></span>
+                            <span class="cart-produ-qty"><?php echo $row['qty']; ?></span>
+
+                            <?php $prodSum = $row['prodPriceNow'] * $row['qty']; ?>
+                            <?php $totalSum += $prodSum; ?>
+
+                            <p class="cart-produ-price"><?php echo $prodSum;?> €</p>
                         </div>
                     </div>
-                    <div class="cart-details">
-                        <span class="cart-produ-title">SHINE &amp; FINE 250g</span>
-                        <span class="cart-produ-qty">Anzahl:1</span>
-                        <span class="cart-produ-price">55 €</span>
-                    </div>
-                </div>
-
-                <div class="cart-item">
-                    <div class="cart-thumbnail">
-                        <div class="thumbnail">
-                            <img alt="Flasche plus Pinsel" src="assets/img/Flaschpluspinsel.jpg">
-                        </div>
-                    </div>
-
-                    <div class="cart-details">
-                        <span class="cart-produ-title">SHINE &amp; FINE 250g</span>
-                        <span class="cart-produ-qty">Anzahl:1</span>
-                        <span class="cart-produ-price">85 €</span>
-                    </div>
-                </div>
+                    
+                <?php } ?>
 
                 <div class="cart-total">
                     <div class="grand-total">
                         <span>Total</span>
-                        <span class="cart-total-price">100 €</span>
+                        <p class="cart-total-price"><?php echo $totalSum;?> €</p>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> 
+        </div>       
     </section>
 
     <section class="section checkout-address">
