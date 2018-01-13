@@ -165,7 +165,7 @@ if (isset($_POST['send-contact'])) {
 
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Ihr Vorame*</label>
+                            <label>Vorname*</label>
                             <br>
                             <?php if (isset($error_msg['firstname'])) echo "<p class=\"error_message\">{$error_msg['firstname']}</p>"; ?>
                             <input class="form-control" id="firstname" type="text" required name="firstname" placeholder="Name" value="<?php if (isset($_POST['send-contact'])) echo $_POST['firstname']; ?>">
@@ -174,7 +174,7 @@ if (isset($_POST['send-contact'])) {
 
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Ihr Nachname*</label>
+                            <label>Nachname*</label>
                             <br>
                             <?php if (isset($error_msg['lastname'])) echo "<p class=\"error_message\">{$error_msg['lastname']}</p>"; ?>
                             <input class="form-control" id="lastname" type="text" required name="lastname" placeholder="Nachname" value="<?php if (isset($_POST['send-contact'])) echo $_POST['lastname']; ?>">
@@ -183,7 +183,7 @@ if (isset($_POST['send-contact'])) {
 
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label>Ihre E-mail*</label>
+                            <label>E-mail*</label>
                             <br>
                             <?php if (isset($error_msg['email'])) echo "<p class=\"error_message\">{$error_msg['email']}</p>"; ?>
                             <input class="form-control" id="email" type="email" required name="email" placeholder="E-mail" value="<?php if (isset($_POST['send-contact'])) echo $_POST['email']; ?>">
