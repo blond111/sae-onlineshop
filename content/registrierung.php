@@ -105,7 +105,7 @@ if (isset($_POST['send-contact'])) {
         mysqli_query($dblink, $sql);
 
         
-        // Einloggen
+        // // // Einloggen
         $sql = "SELECT * FROM users WHERE username = '$username'";
         $res = mysqli_query($dblink, $sql);
     
@@ -116,6 +116,24 @@ if (isset($_POST['send-contact'])) {
             $_SESSION['uname'] = $user['username'];
             $_SESSION['uid'] = $user['id'];
             $_SESSION['usergroup'] = $user['usergroup'];
+
+            if (isset($_SESSION['cart_id'])) {
+                $thisUser = $user['id'];
+                $thiscartid = $_SESSION['cart_id'];
+                $sql = "UPDATE cart SET user_id = '$thisUser' WHERE id = '$thiscartid'";
+                $res = mysqli_query($dblink, $sql);
+            }
+
+            if (isset($_SESSION['cart_id'])) {
+                $cartid = $_SESSION['cart_id'];
+            } else {
+                $userid = (isset($_SESSION['uid'])) ? $_SESSION['uid'] : NULL; // Ist der User angemeldet, speicher gleich auch User-ID.
+                $sql = "INSERT INTO cart (id, user_id) VALUES( NULL, '$userid' ) ";
+                $res = mysqli_query($dblink, $sql);
+        
+                $cartid = mysqli_insert_id($dblink);
+                $_SESSION['cart_id'] = $cartid;
+            }    
 
             if (isset($_GET['frompage'])) {
                 header('Location: ' . ((isset($_GET['from'])) ? ($_GET['from'] . '/') : '') . 'index.php?page=' . $_GET['frompage']);
