@@ -3,7 +3,7 @@
         <div class="row">
             <div class="checkout-address-summary">
                 <?php
-                $sql = "SELECT * FROM users WHERE  id='{$_SESSION['uid']}'";
+                $sql = "SELECT * FROM users WHERE id='{$_SESSION['uid']}'";
                 $res = mysqli_query($dblink, $sql);
 
                 while($row = mysqli_fetch_assoc($res)){
@@ -25,5 +25,3 @@
         </div>
     </div>
 </section>
-
-<!-- Cart -Cartitems- uid verbinden und auslesen -->

@@ -19,8 +19,8 @@
             <td><?php echo $row['user_id']; ?></td>
             <td><?php echo date('d.m.Y', $row['cartDatum']); ?></td>
             <td>
-                <a href="index.php?page=orders&action=edit&id=<?php echo $row['id']; ?>">Bearbeiten</a> |
-                <a href="includes/delete_orders.php?id=<?php echo $row['id']; ?>">Löschen</a>
+                <a href="index.php?page=orders&action=edit&id=<?php echo $row['user_id']; ?>">Bearbeiten</a> |
+                <a href="includes/delete_orders.php?id=<?php echo $row['user_id']; ?>">Löschen</a>
             </td>
         </tr>
     <?php } ?>
