@@ -3,6 +3,7 @@
         <div class="row">
             <div class="checkout-address-summary">
                 <?php
+                ////Auslesen der Tabelle Users, wo die id der Tabelle der "Get id" entspricht.
                 $sql = "SELECT * FROM users WHERE id='{$_SESSION['uid']}'";
                 $res = mysqli_query($dblink, $sql);
 

@@ -1,4 +1,7 @@
 <?php
+
+// DB und Funktionen includieren, sowie Seiten per PhP zusammenstellen und Prüfen ob der Angemeldete eine Berechtigung für diese Seite hat.
+
 session_start();
 
 
