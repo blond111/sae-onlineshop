@@ -163,8 +163,10 @@ if (isset($_POST['update-cart'])) {
 }
 
 if (isset($_POST['finish-order'])) {
+
+    $createdOrder = time();
     
-    $sql = "UPDATE cart SET order_finished = true WHERE id = '$cartid' ";
+    $sql = "UPDATE cart SET order_finished = true, cartDatum = '$createdOrder' WHERE id = '$cartid' ";
     mysqli_query($dblink, $sql); 
     
     unset($cartid);
