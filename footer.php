@@ -22,7 +22,7 @@
         <p>Folge unserer
             <strong>SHINE &amp; FINE</strong>
             <br> Gemeinschft auf</p>
-            
+
         <div class="sozial">
             <a href="https://www.facebook.com" target="_blank" rel="noopener">
                 <img alt="Facebook" src="assets/img/facebook.svg">
@@ -51,7 +51,7 @@
 </footer>
 
 
-<div id="cart_info" <?php if($_GET['cart'] === 'open') echo 'class="cart_info--open"'?> >
+<div id="cart_info" <?php if (isset($_GET['cart']) && $_GET['cart'] === 'open') echo 'class="cart_info--open";'?> >
     <div class="cart-window-all"></div>
     <div class="cart-window">
         <div class="cart-window-header">
@@ -65,12 +65,17 @@
                 <img alt="Mein Warenkorb" src="assets/img/shopping_bag1600.png" class="bag-pic">
             </div>
         </div>
-        
+
         <div class="cart-window-body">
             <?php
-            //Seletieren Cartitems und Produkte um diese zu erhöhen und zu vermindern !
+            // Seletieren Cartitems und Produkte um diese zu erhöhen und zu vermindern !
             $sql = "SELECT * FROM cartitems LEFT JOIN products ON cartitems.prod_id = products.id WHERE cartitems.cart_id = $cartid";
             $res = mysqli_query($dblink, $sql);
+
+            // Wenn keine Produkte zurückgegeben werden
+            if ($res->num_rows < 1) {
+                echo '<h2 class="cart-produ-title">Keine Artikel im Warenkorb.</h2>';
+            }
 
             $totalSum = 0;
 
@@ -95,7 +100,7 @@
                             <form action="" method="post">
                                 <input type="hidden" name= "prodId" value="<?php echo $row['id']; ?>">
                                 <input class="btn btn-default qty-btn js-qty-plus" type="submit" name="update-cart" value="+">
-                            </form> 
+                            </form>
                         </div>
 
                         <?php $prodSum = $row['prodPriceNow'] * $row['qty']; ?>
@@ -104,7 +109,7 @@
                         <p class="cart-produ-price"><?php echo $prodSum;?> €</p>
                     </div>
                 </div>
-                
+
             <?php } ?>
 
             <div class="cart-total">

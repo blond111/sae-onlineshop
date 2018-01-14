@@ -1,12 +1,3 @@
-<?php
-// Ist der Angemeldete berechtigt die Seite zu sehen?
-if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] == -1) {
-    header('Location: index.php?page=login&frompage=checkout');
-    exit();
-}
-
-?>
-
 <div class="checkout-page wrapper">
     <section class="section order-summary">
         <div class="container">
@@ -38,7 +29,7 @@ if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] == -1) {
                             <p class="cart-produ-price"><?php echo $prodSum;?> €</p>
                         </div>
                     </div>
-                    
+
                 <?php } ?>
 
                 <div class="cart-total">
@@ -47,8 +38,8 @@ if (!isset($_SESSION['usergroup']) || $_SESSION['usergroup'] == -1) {
                         <p class="cart-total-price"><?php echo $totalSum;?> €</p>
                     </div>
                 </div>
-            </div> 
-        </div>       
+            </div>
+        </div>
     </section>
 
     <section class="section checkout-address">

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,700">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button1.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <script defer src="assets/js/main.js"></script> <!-- Best practise in 2018: JS in header & defer/async, damit der Browser preloaden kann. -->
+    <script defer src="assets/js/main.js"></script> <!-- Best practise: JS in header plus defer/async, damit der Browser preloaden kann. -->
 </head>
 
 <body class="body-<?php echo $page; ?>">
@@ -41,8 +41,8 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#">
                             <i class="glyphicon glyphicon-user icon <?php if ($myusergroup != -1) echo 'icon-log' ?>"></i>
-                            <?php if ($myusergroup != -1 )  echo "<p>{$_SESSION['uname']}</p>"; ?>
-                        </a>                       
+                            <?php if ($myusergroup != -1)  echo "<p>{$_SESSION['uname']}</p>"; ?>
+                        </a>
 
                         <?php if ($myusergroup >= 0) { ?>
                         <ul class="dropdown-menu" role="menu">
@@ -68,11 +68,9 @@
                             <li role="presentation">
                                 <a href="index.php?page=logout">Logout</a>
                             </li>
-                            
+
                         </ul>
-                        <?php }
-                        
-                        else { ?>
+                        <?php } else { ?>
                         <ul class="dropdown-menu" role="menu">
                             <li role="presentation">
                                 <a href="index.php?page=login">Einloggen</a>
@@ -93,20 +91,21 @@
                     $totalQty = 0;
 
                     while ($row = mysqli_fetch_assoc($res)) {
-                        
                         $prodQty = $row['qty'];
                         $totalQty += $prodQty;
                     }
                     ?>
 
-                    <li class="shop-cart">
-                        <a href="#">
-                            <div class="mycart-container pull-right <?php if($_GET['cart'] === 'open') echo 'mycart-container--hidden' ?>">
-                                <img src="assets/img/shopping_bag1600.png" class="bag-pic cart-pic-header">
-                                <span class="mycart-counter-header"><?php echo $totalQty;?></span>
-                            </div>
-                        </a>
-                    </li>
+                        <li class="shop-cart">
+                            <a href="#">
+                                <div class="mycart-container pull-right <?php if (isset($_GET['cart']) && $_GET['cart'] === 'open') echo 'mycart-container--hidden' ?>">
+                                    <img src="assets/img/shopping_bag1600.png" class="bag-pic cart-pic-header">
+                                    <span class="mycart-counter-header">
+                                        <?php echo $totalQty;?>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
                 </ul>
             </div>
         </div>
