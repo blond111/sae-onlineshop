@@ -4,7 +4,7 @@
             <div class="row order-summary-container">
                 <h1>Bestellung </h1>
                 <?php
-                //Seletieren Cartitems und Produkte um diese zu erhöhen und zu vermindern !
+                //Selektieren Cartitems und Produkte um diese zu erhöhen und zu vermindern !
                 $sql = "SELECT * FROM cartitems LEFT JOIN products ON cartitems.prod_id = products.id WHERE cartitems.cart_id = $cartid";
                 $res = mysqli_query($dblink, $sql);
 
