@@ -167,3 +167,146 @@ if (isset($_POST['finish-order'])) {
     header('Location: index.php?page=finish');
     exit();
 }
+
+// Registrierung
+// Formularvaliderung mit PHP(serverseitig) als auch mit requiered und type (clientseitig) mit diversen css stylings.
+// Error Benachrichtigung werden durch requiered unterdrückt, außer PHP ist gescheiter--> siehe e-mail dann erscheint die Error Nachricht.
+$show_form = true;
+
+if (isset($_POST['send-contact'])) {
+    // Vorname
+    if (strlen($_POST['firstname']) < 3) {
+        $error = true;
+        $error_msg['firstname'] = "Der Vorname ist zu kurz!";
+    }
+
+    // Nachname
+    if (strlen($_POST['lastname']) < 2) {
+        $error = true;
+        $error_msg['lastname'] = "Der Nachname ist zu kurz!";
+    }
+
+    // E-Mail
+    $email_parts = explode("@", $_POST['email']);
+
+    if (count($email_parts) == 2) {
+        $email_parts_second = explode(".", $email_parts[1]);
+
+        if (count($email_parts_second) != 2) {
+            $error = true;
+            $error_msg['email'] = "Deine Email ist nicht korrekt!";
+        }
+    } else {
+        $error = true;
+        $error_msg['email'] = "Deine Email ist nicht korrekt!";
+    }
+
+    // Straße
+    if (strlen($_POST['street']) < 2) {
+        $error = true;
+        $error_msg['street'] = "Deine Straße ist nicht korrekt!";
+    }
+
+    // Tür
+    if (strlen($_POST['door']) < 1) {
+        $error = true;
+        $error_msg['door'] = "Deine Hausnummer ist nicht korrekt";
+    }
+
+    // PLZ
+    if (strlen($_POST['plz']) < 4) {
+        $error = true;
+        $error_msg['plz'] = "Deine PLZ ist zu kurz!";
+    }
+
+    // Ort
+    if (strlen($_POST['ort']) < 4) {
+        $error = true;
+        $error_msg['ort'] = "Dein Ort ist nicht korrekt!";
+    }
+
+    // Username
+    if (strlen($_POST['user']) < 4) {
+        $error = true;
+        $error_msg['user'] = "Dein User name muss min. 7 Stellen haben!";
+    }
+
+    // Passwort
+
+    if ($_POST['password-one'] != $_POST['password-two']) {
+        $error = true;
+        $error_msg['password'] = "Dein Passwort stimmt nicht überein!";
+    }
+
+    if (strlen($_POST['password-one']) < 7) {
+        $error = true;
+        $error_msg['password-one'] = "Dein Passwort ist zu kurz!";
+    }
+
+    if (strlen($_POST['password-two']) < 7) {
+        $error = true;
+        $error_msg['password-two'] = "Dein Passwort ist zu kurz!";
+    }
+
+    if ($error === false) {
+        $show_form = false;
+
+        $fname = mysqli_real_escape_string($dblink, $_POST['firstname']);
+        $lname = mysqli_real_escape_string($dblink, $_POST['lastname']);
+        $email = mysqli_real_escape_string($dblink, $_POST['email']);
+        $street = mysqli_real_escape_string($dblink, $_POST['street']);
+        $door = mysqli_real_escape_string($dblink, $_POST['door']);
+        $plz = mysqli_real_escape_string($dblink, $_POST['plz']);
+        $ort = mysqli_real_escape_string($dblink, $_POST['ort']);
+        $username = mysqli_real_escape_string($dblink, $_POST['user']);
+
+        $password = mysqli_real_escape_string($dblink, $_POST['password-one']);
+        $pw_hash = sha1($password.'1234').':1234';
+
+
+        $sql = "INSERT INTO users (fname, lname, email, street, door, plz, ort, username, password, usergroup)
+                VALUES ('$fname', '$lname', '$email', '$street', '$door', '$plz', '$ort', '$username', '$pw_hash', '0')";
+
+        mysqli_query($dblink, $sql);
+
+
+        // Einloggen
+        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $res = mysqli_query($dblink, $sql);
+
+        if (mysqli_num_rows($res) == 1) {
+            $user = mysqli_fetch_assoc($res);
+
+            $_SESSION['login'] = 1;
+            $_SESSION['uname'] = $user['username'];
+            $_SESSION['uid'] = $user['id'];
+            $_SESSION['usergroup'] = $user['usergroup'];
+
+            if (isset($_SESSION['cart_id'])) {
+                $thisUser = $user['id'];
+                $thiscartid = $_SESSION['cart_id'];
+                $sql = "UPDATE cart SET user_id = '$thisUser' WHERE id = '$thiscartid'";
+                $res = mysqli_query($dblink, $sql);
+            }
+
+            if (isset($_SESSION['cart_id'])) {
+                $cartid = $_SESSION['cart_id'];
+            } else {
+                $userid = (isset($_SESSION['uid'])) ? $_SESSION['uid'] : null; // Ist der User angemeldet, speicher gleich auch User-ID.
+                $sql = "INSERT INTO cart (id, user_id) VALUES( NULL, '$userid' ) ";
+                $res = mysqli_query($dblink, $sql);
+
+                $cartid = mysqli_insert_id($dblink);
+                $_SESSION['cart_id'] = $cartid;
+            }
+
+            if (isset($_GET['frompage'])) {
+                header('Location: ' . ((isset($_GET['from'])) ? ($_GET['from'] . '/') : '') . 'index.php?page=' . $_GET['frompage']);
+                exit();
+            } else {
+                header('Location: user-account/index.php?page=account');
+                exit();
+            }
+        }
+    }
+}
