@@ -51,7 +51,7 @@
                     $sql = "SELECT * FROM users WHERE  id='{$_SESSION['uid']}'";
                     $res = mysqli_query($dblink, $sql);
 
-                    while($row = mysqli_fetch_assoc($res)){
+                    while ($row = mysqli_fetch_assoc($res)) {
                     ?>
                         <a href="user-account/index.php?page=address&action=edit&frompage=checkout" class="link-edit link-edit-account">Bearbeiten </a>
                         <div class="row">

@@ -25,7 +25,7 @@ if ($page == "account") {
 } elseif ($page == "address") {
     $title = "Adresse";
     $content .= "address.php";
-} elseif($page == "logout") {
+} elseif ($page == "logout") {
     session_destroy();
     header('Location: ../index.php');
     exit();

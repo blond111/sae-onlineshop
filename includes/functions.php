@@ -19,8 +19,8 @@ if (! isset($_SESSION['timeout'])) {
 if (isset($_SESSION['cart_id'])) {
     $cartid = $_SESSION['cart_id'];
 } else {
-    $userid = (isset($_SESSION['uid'])) ? $_SESSION['uid'] : null; // Ist der User angemeldet, speicher gleich auch User-ID.
-    $sql = "INSERT INTO cart (id, user_id) VALUES( NULL, '$userid' ) ";
+    $userid = (isset($_SESSION['uid'])) ? $_SESSION['uid'] : 'NULL'; // Ist der User bereits angemeldet, speicher gleich auch User-ID.
+    $sql = "INSERT INTO cart (id, user_id) VALUES ( NULL, $userid )";
     $res = mysqli_query($dblink, $sql);
 
     $cartid = mysqli_insert_id($dblink);

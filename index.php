@@ -1,5 +1,5 @@
 <?php
-// DB und Funktionen includieren, sowie Seiten per PhP zusammenstellen und Prüfen ob der Angemeldete eine Berechtigung für diese Seite hat.
+// DB und Funktionen includieren, sowie Seiten per PhP zusammenstellen.
 
 
 session_start();
